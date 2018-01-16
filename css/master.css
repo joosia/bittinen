@@ -1,0 +1,74 @@
+html, body {
+   height: 100%;
+   margin: 0;
+   color: #333;
+   /* FONT FOR BODY */
+   font-family: 'Noto Sans', sans-serif;
+}
+
+/* FONT FOR HEADINGS */
+h1, h2, h3, h4 {
+   font-family: 'Fredoka One', cursive;
+   text-align: center;
+}
+
+a {
+   text-decoration: none;
+   color: #333;
+}
+a:hover {
+   color: #555;
+}
+
+.chevron {
+   width: 20%;
+   position: absolute;
+   bottom: 2%;
+   right: 40%;
+   left: 40%;
+
+}
+
+.fullScreen {
+   height: 100%;
+   width: 100%;
+   position: relative;
+}
+
+.content {
+   padding: 5% 5%;
+   position: relative;
+}
+
+#intro {
+   text-align: center;
+   background: url("../pics/logo.png")  no-repeat;;
+   background-position: center;
+   background-size: 80%;
+}
+
+#first {
+   background: #96CEB4;
+   background-position: center;
+   background-size: cover;
+}
+
+#second {
+   background: #FFEEAD;
+   overflow: hidden;
+}
+
+#third {
+   background: #FF6F69;
+   overflow: hidden;
+}
+
+#fourth {
+   background: #FFCC5C;
+   overflow: hidden;
+}
+
+#fifth {
+   background: #AAD8B0;
+   overflow: hidden;
+}
