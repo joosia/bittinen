@@ -3,11 +3,11 @@
 
 @keyframes blink {0% {opacity:0;} 50% {opacity:1;} 100% {opacity:0;}}
 
-@keyframes moveHalf {50% {bottom: -25%;}100% {bottom: 15%;}}
+@keyframes moveHalf {50% {bottom: -25%;}100% {bottom: 5%;}}
 
 @keyframes fadeIn {
    0% {opacity: 0;}
-   100% {opacity:100;}
+   100% {opacity:1;}
 }
 
 @keyframes bgColor {
@@ -24,13 +24,35 @@
    animation-iteration-count: infinite;
 }
 
+form {
+   opacity: 0;
+   position: relative;
+   top: 2px;
+   display: block;
+   text-align: center;
+   animation: fadeIn;
+   animation-delay: 4s;
+   animation-duration: 1s;
+   animation-fill-mode: forwards;
+   z-index: 1;
+   font-size: 0.9em;
+}
+
+input {
+   border: none;
+   background: none;
+   font-size: 0.9em;
+   width: 50%;
+
+}
+
 /*.fadeIn {
    transition-delay: 1s;
    animation-name: fadeIn;
    animation-duration: 1s;
 }*/
 
-#cursor {
+/*#cursor {
    opacity: 0;
    width: 1px;
    height: 2%;
@@ -42,7 +64,7 @@
    animation-delay: 4s;
    animation-duration: 1s;
    animation-iteration-count: infinite;
-}
+}*/
 
 #logo {
    display: block;
@@ -54,6 +76,19 @@
    animation-delay: 2.5s;
    animation-duration: 1.5s;
    animation-fill-mode: forwards;
+}
+
+#browser {
+   display: block;
+   position: relative;
+   width: 80%;
+   margin: 0 auto;
+   bottom: -100%;
+   animation-name: moveHalf;
+   animation-delay: 1s;
+   animation-duration: 3s;
+   animation-fill-mode: forwards;
+   box-shadow: 5px 20px 20px rgba(0,0,0,.5);
 }
 
 #laptop {
@@ -71,6 +106,7 @@
 html, body {
    height: 100%;
    margin: 0;
+   padding: 0;
    color: #333;
    /* FONT FOR BODY */
    font-family: 'Noto Sans', sans-serif;
@@ -108,13 +144,6 @@ a:hover {
 .content {
    padding: 5% 5%;
    position: relative;
-}
-
-#intro {
-   text-align: center;
-   /*background: url("../pics/logo.png")  no-repeat;;*/
-   background-position: center;
-   background-size: 80%;
 }
 
 #first {
