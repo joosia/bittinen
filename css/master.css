@@ -12,7 +12,8 @@
     25%  {background-color:rgb(255, 238,173);}
     50%  {background-color:rgb(255, 111, 105);}
     75%  {background-color:rgb(255, 204, 92);}
-    100% {background-color:rgb(170, 216, 176 );}
+    90% {background-color:rgb(170, 216, 176 );}
+    100%   {background-color:rgb(150, 206,180);}
 }
 
 .fadeIn {
@@ -67,6 +68,7 @@ color: #555;
    animation-name: bgColor;
    animation-duration: 10s;
    animation-iteration-count: infinite;
+   animation-fill-mode: forwards;
 }
 
 #logo {
