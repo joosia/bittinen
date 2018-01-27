@@ -16,9 +16,15 @@
    <body>
 
       <div id="intro" class="fullScreen">
-         <img id="logo" class="fadeIn" src="pics/logo.svg" alt="logo"/>
-         <form action="#first"><input id="url" class="fadeIn" type="text" value="https://"/></form>
-         <img id="browser" src="pics/browser-bittinen.svg" alt="browser"/>
+         <div id="solved">
+            <h2>Well done!</h2>
+         </div>
+         <div class="puzzle" >
+            <img id="puzzlePic" class="selectDisable" src="pics/rainbow.png"/>
+         </div>
+         <img id="logo" class="fadeIn selectDisable" draggable="false" ondragstart="return false;"  src="pics/logo.svg" alt="logo"/>
+         <form id="form" action="#first"><input id="url" class="fadeIn" type="text" value="https://"/></form>
+         <img id="browser" class="selectDisable" src="pics/browser-bittinen.svg" draggable="false" ondragstart="return false;"/>
          <!-- <img id="laptop" src="pics/laptop.png" alt="laptop"/>-->
       </div>
 
@@ -77,9 +83,9 @@
          </div>
       </div>
 
-      <!-- jQuery -->
-      <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript">
-      </script>
+      <!-- jQuery & jQuery UI-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 
       <!-- SMOOTH SCROLL -->
       <script>
@@ -91,7 +97,12 @@
       });
       </script>
 
+      <!-- snapPuzzle -->
+      <script type="text/javascript" src="js/jquery.snap-puzzle.min.js"></script>
+
+      <!-- MASTER JS -->
       <script src="js/intro.js" type="text/javascript"></script>
+
       <!-- BOOTSTRAP JS
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript">
       </script> -->
