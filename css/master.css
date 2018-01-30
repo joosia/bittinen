@@ -3,7 +3,7 @@
 
 @keyframes blink {0% {opacity:0;} 50% {opacity:1;} 100% {opacity:0;}}
 
-@keyframes moveHalf {50% {bottom: -50%;}100% {bottom: -5%;}}
+@keyframes moveHalf {50% {bottom: -55%;}100% {bottom: -10%;}}
 
 @keyframes fadeIn {0% {opacity: 0;}100% {opacity:1;}}
 
@@ -83,34 +83,74 @@ color: #555;
    animation-fill-mode: forwards;
 }
 
-#url {
-   display: block;
+.browserContainer {
+   position: relative;
+   top: 15%;
+   overflow: hidden;
+   height: 85%;
+   width: 80%; /*1280x720 HD*/
+   margin: 0 10% 0 10%;
+   transition: ease-in-out 500ms;
+}
+
+/* For enlarging browserContainer */
+.bcLarge {
+  width: 85%;
+  margin: 0 7.5% 0 7.5%;
+}
+
+#form {
+   width: 100%;
+}
+
+.url {
    position: absolute;
-   top: 22%;
+   display: block;
+   height: 1.15em;
+   bottom: 86%;
    z-index: 1;
-   margin: 0 0 0 23%;
-   width: 55%;
+   margin: 0 18% 0 18%;
+   width: 64%;
    border: none;
    background: none;
-   font-size: 14px;
+   font-size: 0.9em;
    opacity: 0;
    transition: ease-in-out 500ms;
    /* Animation from fadeIn -class*/
    animation-delay: 4s;
 }
 
+/* For increasing text size */
+.urlLarge {
+  font-size: 1em;
+  height: 1.25em;
+  bottom: 92%;
+}
+
+.url:invalid {
+   text-decoration: underline dotted rgb(255, 111, 105);
+   /* For testing alingment
+   border: 1px solid red;*/
+   box-shadow: none;
+}
+
+.url:valid {
+   text-decoration: underline dotted rgb(150, 206,180);
+   /* For testing alingment
+   border: 1px solid red;*/
+   box-shadow: none;
+}
+
 #browser {
-   display: block;
    position: absolute;
-   width: 80%;
-   margin: 0 10% 0 10%;
-   bottom: -100%;
+   display: block;
+   bottom: -110%;
    transition: ease-in-out 500ms;
    animation-name: moveHalf;
    animation-delay: 1s;
    animation-duration: 3s;
    animation-fill-mode: forwards;
-   box-shadow: 0px 20px 20px rgba(0,0,0,.5);
+   /*box-shadow: 0px 20px 20px rgba(0,0,0,.5);*/
 }
 
 .chevron {
@@ -125,6 +165,7 @@ color: #555;
    height: 100%;
    width: 100%;
    position: relative;
+   overflow: hidden;
 }
 
 .content {
@@ -160,21 +201,44 @@ color: #555;
 
 
 /* PUZZLE SETTINGS */
-.puzzle {
+
+/* The puzzle picture*/
+#puzzlePic {
    position: absolute;
-   height: 100%;
-   margin:0;
+   margin: 10% 3.5% 0 3.5%;
+   display: none;
+   width: 93%;
    z-index: 3;
-   overflow: hidden;
 }
 
-#puzzlePic {
-   position: relative;
-   margin: 15% 10% 0 10%;
-   bottom: 0;
-   width: 80%;
-   display: none;
+.snappuzzle-wrap { position: relative; display: block; }
+
+.snappuzzle-pile {
+   position: absolute;
+   width: 100%;
+   height: 5%;
+   top:15%;
+   z-index: 4
+   /*overflow: auto;*/
 }
+/* Puzzle pieces */
+.snappuzzle-piece {
+   cursor: move; box-shadow: 0px 5px 10px rgba(0,0,0,.3);
+}
+
+/* The Game layout on top of picture*/
+.snappuzzle-slot {
+   position: absolute;
+   background: #fff;
+   opacity: .8;
+   width: 93%;
+   margin: 10% 3.5% 0 3.5%;
+   z-index: 3;
+
+;}
+.snappuzzle-slot-hover { background: #eee;}
+
+/* After complete */
 #solved{
    display: none;
    color: #222;
@@ -185,32 +249,4 @@ color: #555;
    width: 32%;
    border-radius: 16px;
    margin: 0 34% 0 34%;
-   z-index:4;
 }
-/* snapPuzzle styles */
-.snappuzzle-wrap {
-   position: relative;
-   display: block;
-   bottom: 0;
-   height: 100%;
-   width: 100%;
-}
-.snappuzzle-pile {
-   position: absolute;
-   z-index: 2;
-   margin: 2%;
-   height: 25%;
-   width: 96%
-}
-.snappuzzle-piece {
-   cursor: move;
-   box-shadow: 0px 5px 10px rgba(0,0,0,.3);}
-.snappuzzle-slot {
-   position: absolute;
-   background: #fff;
-   opacity: .8;
-   width: 80%;
-   margin-left: 10%;
-   margin-right: 10%;
-}
-.snappuzzle-slot-hover { background: #eee; }
