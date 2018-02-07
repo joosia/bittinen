@@ -3,7 +3,7 @@
 
 @keyframes blink {0% {opacity:0;} 50% {opacity:1;} 100% {opacity:0;}}
 
-@keyframes moveHalf {50% {bottom: -55%;}100% {bottom: -10%;}}
+@keyframes moveHalf {50% {bottom: -67%;}100% {bottom: -10%;}}
 
 @keyframes fadeIn {0% {opacity: 0;}100% {opacity:1;}}
 
@@ -96,6 +96,7 @@ color: #555;
 /* For enlarging browserContainer */
 .bcLarge {
   width: 85%;
+  height: 100%;
   margin: 0 7.5% 0 7.5%;
 }
 
@@ -107,7 +108,7 @@ color: #555;
    position: absolute;
    display: block;
    height: 1.15em;
-   bottom: 80.5%;
+   bottom: 89%;
    z-index: 1;
    margin: 0 18% 0 18%;
    width: 64%;
@@ -124,7 +125,7 @@ color: #555;
 .urlLarge {
   font-size: 1em;
   height: 1.25em;
-  bottom: 86%;
+  bottom: 84.5%;
 }
 
 .url:invalid {
@@ -168,13 +169,8 @@ color: #555;
    overflow: hidden;
 }
 
-.first {
-   padding: 5% 5% 5% 5%;
-   position: absolute;
-}
-
 #first {
-   background: #96CEB4;
+   background: url("1x/tausta.png");
    background-position: center;
    background-size: cover;
 }
@@ -193,7 +189,7 @@ color: #555;
   right: 0;
 }
 
-@keyframes drop { 0% {top:55%;} 100% {top: 145%;} }
+@keyframes drop { 0% {top:55%;} 100% {top: 140%;} }
 @keyframes moveRight { 0% {left:0;} 100% {left: 40%;} }
 
 .drop {
@@ -258,101 +254,36 @@ color: #555;
   left: 10%;
 }
 .hakaset1 {
-  position: absolute;
-  display: block;
-  overflow-x: hidden;
-  left: 17%;
-  bottom: 34%;
-  animation: slide 2s reverse linear infinite;
-  animation-play-state: paused;
+   left: 17%;
+   bottom: 38%;
+   animation: slide 2s reverse linear infinite;
 }
 
 .hakaset2 {
-  position: absolute;
-  display: block;
-  overflow: hidden;
-  left: 17%;
-  bottom: 24.5%;
-  overflow: hidden;
-  animation: slide 2s linear forwards infinite;
-  animation-play-state: paused;
+   left: 17%;
+   bottom: 25%;
+   overflow: hidden;
+   animation: slide 2s linear forwards infinite;
 }
 
 .hakaset3 {
-  position: absolute;
-  display: block;
-  overflow-x: hidden;
-  left: 0;
-  bottom: 34%;
-  animation: slide 8s reverse linear infinite;
-  animation-play-state: paused;
+   left: 0;
+   bottom: 38%;
+   animation: slide 8s reverse linear infinite;
 }
 
 .hakaset4 {
-  position: absolute;
-  display: block;
-  overflow: hidden;
-  left: 0;
-  bottom: 24.5%;
-  overflow: hidden;
-  animation: slide 8s linear forwards infinite;
-  animation-play-state: paused;
+   left: 0;
+   bottom: 25%;
+   overflow: hidden;
+   animation: slide 8s linear forwards infinite;
+  }
+
+.hakaset {
+   position: absolute;
+   display: block;
+   overflow: hidden;
+   animation-play-state: paused;
 }
-
-/* CANVAS */
-/*#canvas {
-  display: block;
-  position: absolute;
-}*/
-
 
 /* PUZZLE SETTINGS */
-
-/* The puzzle picture*/
-#puzzlePic {
-   position: absolute;
-   margin: 10% 3.5% 0 3.5%;
-   display: none;
-   width: 93%;
-   z-index: 3;
-}
-
-.snappuzzle-wrap { position: relative; display: block; }
-
-.snappuzzle-pile {
-   position: absolute;
-   width: 100%;
-   height: 5%;
-   top:15%;
-   z-index: 4
-   /*overflow: auto;*/
-}
-/* Puzzle pieces */
-.snappuzzle-piece {
-   cursor: move; box-shadow: 0px 5px 10px rgba(0,0,0,.3);
-}
-
-/* The Game layout on top of picture*/
-.snappuzzle-slot {
-   position: absolute;
-   background: #fff;
-   opacity: .8;
-   width: 93%;
-   margin: 10% 3.5% 0 3.5%;
-   z-index: 3;
-
-;}
-.snappuzzle-slot-hover { background: #eee;}
-
-/* After complete */
-#solved{
-   display: none;
-   color: #222;
-   text-align: center;
-   position: absolute;
-   top: 5%;
-   height: 10%;
-   width: 32%;
-   border-radius: 16px;
-   margin: 0 34% 0 34%;
-}

@@ -48,7 +48,7 @@ $(document).ready(function() {
     $('html, body').animate( {
        scrollTop:$($(this).attr('action')).offset().top
     },700);
-    $(".hakaset1, .hakaset2, .hakaset3, .hakaset4").css("animation-play-state","running");
+    $(".hakaset").css("animation-play-state","running");
     $("#paketti").css("display","block").addClass("drop");
   });
 

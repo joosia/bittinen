@@ -16,63 +16,37 @@
 
   <!--***** Intro *****-->
   <div id="intro" class="fullScreen">
+      <!-- Logo -->
+      <img id="logo" class="fadeIn selectDisable" draggable="false" ondragstart="return false;"  src="../pics/logo.svg" alt="logo"/>
 
-    <!-- Logo -->
-    <img id="logo" class="fadeIn selectDisable" draggable="false" ondragstart="return false;"  src="../pics/logo.svg" alt="logo"/>
-
-    <!-- Puzzle Pieces container -->
-    <div class="container">
-      <div class="pile"></div>
-    </div>
-
-    <!-- Browser container-->
-    <div class="browserContainer">
-      <!-- Puzzle Solved-->
-      <div id="solved"><h1>Mahtavaa, voitit pelin!</h1></div>
-      <!-- Puzzle Picture-->
-      <img id="puzzlePic" class="selectDisable" src="pics/puzzle-cat.png"/>
-      <!-- Url-bar -->
-      <form id="form" action="#first" autocomplete="url">
-        <input class="url fadeIn" type="url" placeholder="https://" value="https://"/>
-      </form>
-      <!-- Browser image -->
-      <img id="browser" class="selectDisable" src="../pics/browser-shadow.svg" draggable="false" ondragstart="return false;"/>
-    </div>
+      <!-- Browser container-->
+      <div class="browserContainer">
+         <!-- Url-bar -->
+         <form id="form" action="#first" autocomplete="url">
+           <input class="url fadeIn" type="url" placeholder="https://" value="https://"/>
+         </form>
+         <!-- Browser image -->
+         <img id="browser" class="selectDisable" src="../pics/browser-shadow.svg" draggable="false" ondragstart="return false;"/>
+      </div>
   </div>
 
   <img id="paketti" src="1x/paketti-right.png">
 
   <!--***** First screen after intro *****-->
   <div id="first" class="fullScreen">
-    <div class="first">
-    </div>
-    <!-- <canvas id="canvas" width="" height=""> -->
-      <img id="tausta" src="1x/tausta.png" alt="tausta">
-      <img id="liukuhihna1" src="liukuhihna.png" alt="liukuhihna">
-      <img id="liukuhihna2" src="liukuhihna.png" alt="liukuhihna">
+      <!-- <img id="tausta" src="1x/tausta.png" alt="tausta"> -->
+      <img id="liukuhihna1" src="liukuhihna.png">
+      <img id="liukuhihna2" src="liukuhihna.png">
       <img id="reititin" src="1x/reititin.png" alt="">
       <div class="hakasetContainer">
-        <div class="hakaset1">
-          <img id="hakaset1" src="hakaset.png" alt="hakaset">
-        </div>
-        <div class="hakaset2">
-            <img id="hakaset" src="hakaset.png" alt="hakaset">
-        </div>
+        <div class="hakaset hakaset1"><img src="hakaset.png"></div>
+        <div class="hakaset hakaset2"><img src="hakaset.png"></div>
       </div>
       <div class="hakasetContainer2">
-        <div class="hakaset3">
-          <img id="hakaset1" src="hakaset.png" alt="hakaset">
-        </div>
-        <div class="hakaset4">
-            <img id="hakaset" src="hakaset.png" alt="hakaset">
-        </div>
+        <div class="hakaset hakaset3"><img src="hakaset.png"></div>
+        <div class="hakaset hakaset4"><img src="hakaset.png"></div>
       </div>
-    <!-- </canvas> -->
-    <div class="chevron"><a href="#second"><i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i></a></h4>
-    </div>
   </div>
-
-
 
   <!--***** Fifth screen *****-->
   <div id="fifth" class="fullScreen">
@@ -90,11 +64,7 @@
   <!-- jQuery & jQuery UI-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <!-- snapPuzzle -->
-  <!-- <script type="text/javascript" src="js/jquery.snap-puzzle.min.js"></script> -->
   <!-- Master JS -->
   <script src="intro.js"></script>
-  <!-- bootstrap JS
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script> -->
 </body>
 </html>
