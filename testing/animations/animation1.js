@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"animation_test_atlas_", frames: [[0,134,316,134],[0,0,802,132]]}
+		{name:"animation1_atlas_", frames: [[0,134,316,134],[0,0,802,132]]}
 ];
 
 
@@ -12,14 +12,14 @@ lib.ssMetadata = [
 
 
 (lib.Path_1 = function() {
-	this.spriteSheet = ss["animation_test_atlas_"];
+	this.spriteSheet = ss["animation1_atlas_"];
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.hihna = function() {
-	this.spriteSheet = ss["animation_test_atlas_"];
+	this.spriteSheet = ss["animation1_atlas_"];
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
@@ -354,36 +354,36 @@ p.nominalBounds = new cjs.Rectangle(0,0,187.3,148.5);
 (lib.hakanen = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
-	// Layer_4 copy
+	// Layer_6
 	this.instance = new lib.hihna_1();
 	this.instance.parent = this;
-	this.instance.setTransform(-235.8,46.5,1,1,0,0,0,189.8,8.7);
+	this.instance.setTransform(-226.4,46.4,1,1,0,0,0,189.8,8.7);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1).to({regX:172.9,x:-253.2},0).wait(1).to({x:-253.7},0).wait(1).to({x:-254.3},0).wait(1).to({x:-254.8},0).wait(1).to({x:-255.3},0).wait(1).to({x:-255.9},0).wait(1).to({x:-256.4},0).wait(1).to({x:-256.9},0).wait(1).to({x:-257.5},0).wait(1).to({x:-258},0).wait(1).to({x:-258.6},0).wait(1).to({x:-259.1},0).wait(1).to({x:-259.6},0).wait(1).to({x:-260.2},0).wait(1).to({x:-260.7},0).wait(1).to({x:-261.2},0).wait(1).to({x:-261.8},0).wait(1).to({x:-262.3},0).wait(1).to({x:-262.9},0).wait(1).to({x:-263.4},0).wait(1).to({x:-263.9},0).wait(1).to({x:-264.5},0).wait(1).to({x:-265},0).wait(1).to({x:-265.5},0).wait(1).to({x:-266.1},0).wait(1).to({x:-266.6},0).wait(1).to({x:-267.2},0).wait(1).to({x:-267.7},0).wait(1).to({x:-268.2},0).wait(1).to({x:-268.8},0).wait(1).to({x:-269.3},0).wait(1).to({x:-269.8},0).wait(1).to({x:-270.4},0).wait(1).to({x:-270.9},0).wait(1).to({x:-271.5},0).wait(1).to({x:-272},0).wait(1).to({x:-272.5},0).wait(1).to({x:-273.1},0).wait(1).to({x:-273.6},0).wait(1).to({x:-274.1},0).wait(1).to({x:-274.7},0).wait(1).to({x:-275.2},0).wait(1).to({x:-275.8},0).wait(1).to({x:-276.3},0).wait(1).to({x:-276.8},0).wait(1).to({x:-277.4},0).wait(1).to({x:-277.9},0).wait(1).to({x:-278.4},0).wait(1).to({x:-279},0).wait(1).to({x:-279.5},0).wait(1).to({x:-280.1},0).wait(1).to({x:-280.6},0).wait(1).to({x:-281.1},0).wait(1).to({x:-281.7},0).wait(1).to({x:-282.2},0).wait(1).to({x:-282.7},0).wait(1).to({x:-283.3},0).wait(1).to({x:-283.8},0).wait(1).to({x:-284.4},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1).to({regX:172.9,x:-243.9},0).wait(1).to({x:-244.4},0).wait(1).to({x:-245},0).wait(1).to({x:-245.6},0).wait(1).to({x:-246.1},0).wait(1).to({x:-246.7},0).wait(1).to({x:-247.2},0).wait(1).to({x:-247.8},0).wait(1).to({x:-248.4},0).wait(1).to({x:-248.9},0).wait(1).to({x:-249.5},0).wait(1).to({x:-250.1},0).wait(1).to({x:-250.6},0).wait(1).to({x:-251.2},0).wait(1).to({x:-251.7},0).wait(1).to({x:-252.3},0).wait(1).to({x:-252.9},0).wait(1).to({x:-253.4},0).wait(1).to({x:-254},0).wait(1).to({x:-254.6},0).wait(1).to({x:-255.1},0).wait(1).to({x:-255.7},0).wait(1).to({x:-256.2},0).wait(1).to({x:-256.8},0).wait(1).to({x:-257.4},0).wait(1).to({x:-257.9},0).wait(1).to({x:-258.5},0).wait(1).to({x:-259.1},0).wait(1).to({x:-259.6},0).wait(1).to({x:-260.2},0).wait(1).to({x:-260.7},0).wait(1).to({x:-261.3},0).wait(1).to({x:-261.9},0).wait(1).to({x:-262.4},0).wait(1).to({x:-263},0).wait(1).to({x:-263.6},0).wait(1).to({x:-264.1},0).wait(1).to({x:-264.7},0).wait(1).to({x:-265.2},0).wait(1).to({x:-265.8},0).wait(1).to({x:-266.4},0).wait(1).to({x:-266.9},0).wait(1).to({x:-267.5},0).wait(1).to({x:-268.1},0).wait(1).to({x:-268.6},0).wait(1).to({x:-269.2},0).wait(1).to({x:-269.7},0).wait(1).to({x:-270.3},0).wait(1).to({x:-270.9},0).wait(1).to({x:-271.4},0).wait(1).to({x:-272},0).wait(1).to({x:-272.6},0).wait(1).to({x:-273.1},0).wait(1).to({x:-273.7},0).wait(1).to({x:-274.2},0).wait(1).to({x:-274.8},0).wait(1).to({x:-275.4},0).wait(1).to({x:-275.9},0).wait(1).to({x:-276.5},0).wait(1));
 
-	// Layer_4
+	// Layer_5
 	this.instance_1 = new lib.hihna_1();
 	this.instance_1.parent = this;
-	this.instance_1.setTransform(198.5,46.5,1,1,0,0,0,189.8,8.7);
+	this.instance_1.setTransform(-254.7,7.2,1,1,0,0,0,189.8,8.7);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1).to({regX:172.9,x:181},0).wait(1).to({x:180.5},0).wait(1).to({x:179.9},0).wait(1).to({x:179.4},0).wait(1).to({x:178.9},0).wait(1).to({x:178.3},0).wait(1).to({x:177.8},0).wait(1).to({x:177.3},0).wait(1).to({x:176.7},0).wait(1).to({x:176.2},0).wait(1).to({x:175.6},0).wait(1).to({x:175.1},0).wait(1).to({x:174.6},0).wait(1).to({x:174},0).wait(1).to({x:173.5},0).wait(1).to({x:173},0).wait(1).to({x:172.5},0).wait(1).to({x:171.9},0).wait(1).to({x:171.4},0).wait(1).to({x:170.9},0).wait(1).to({x:170.3},0).wait(1).to({x:169.8},0).wait(1).to({x:169.2},0).wait(1).to({x:168.7},0).wait(1).to({x:168.2},0).wait(1).to({x:167.6},0).wait(1).to({x:167.1},0).wait(1).to({x:166.6},0).wait(1).to({x:166},0).wait(1).to({x:165.5},0).wait(1).to({x:164.9},0).wait(1).to({x:164.4},0).wait(1).to({x:163.9},0).wait(1).to({x:163.3},0).wait(1).to({x:162.8},0).wait(1).to({x:162.3},0).wait(1).to({x:161.7},0).wait(1).to({x:161.2},0).wait(1).to({x:160.6},0).wait(1).to({x:160.1},0).wait(1).to({x:159.6},0).wait(1).to({x:159},0).wait(1).to({x:158.5},0).wait(1).to({x:158},0).wait(1).to({x:157.4},0).wait(1).to({x:156.9},0).wait(1).to({x:156.3},0).wait(1).to({x:155.8},0).wait(1).to({x:155.3},0).wait(1).to({x:154.7},0).wait(1).to({x:154.2},0).wait(1).to({x:153.7},0).wait(1).to({x:153.1},0).wait(1).to({x:152.6},0).wait(1).to({x:152},0).wait(1).to({x:151.5},0).wait(1).to({x:151},0).wait(1).to({x:150.4},0).wait(1).to({x:149.9},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1).to({regX:172.9,x:-271},0).wait(1).to({x:-270.5},0).wait(1).to({x:-269.9},0).wait(1).to({x:-269.3},0).wait(1).to({x:-268.8},0).wait(1).to({x:-268.2},0).wait(1).to({x:-267.7},0).wait(1).to({x:-267.1},0).wait(1).to({x:-266.5},0).wait(1).to({x:-266},0).wait(1).to({x:-265.4},0).wait(1).to({x:-264.8},0).wait(1).to({x:-264.3},0).wait(1).to({x:-263.7},0).wait(1).to({x:-263.2},0).wait(1).to({x:-262.6},0).wait(1).to({x:-262},0).wait(1).to({x:-261.5},0).wait(1).to({x:-260.9},0).wait(1).to({x:-260.3},0).wait(1).to({x:-259.8},0).wait(1).to({x:-259.2},0).wait(1).to({x:-258.7},0).wait(1).to({x:-258.1},0).wait(1).to({x:-257.5},0).wait(1).to({x:-257},0).wait(1).to({x:-256.4},0).wait(1).to({x:-255.8},0).wait(1).to({x:-255.3},0).wait(1).to({x:-254.7},0).wait(1).to({x:-254.2},0).wait(1).to({x:-253.6},0).wait(1).to({x:-253},0).wait(1).to({x:-252.5},0).wait(1).to({x:-251.9},0).wait(1).to({x:-251.3},0).wait(1).to({x:-250.8},0).wait(1).to({x:-250.2},0).wait(1).to({x:-249.7},0).wait(1).to({x:-249.1},0).wait(1).to({x:-248.5},0).wait(1).to({x:-248},0).wait(1).to({x:-247.4},0).wait(1).to({x:-246.8},0).wait(1).to({x:-246.3},0).wait(1).to({x:-245.7},0).wait(1).to({x:-245.2},0).wait(1).to({x:-244.6},0).wait(1).to({x:-244},0).wait(1).to({x:-243.5},0).wait(1).to({x:-242.9},0).wait(1).to({x:-242.3},0).wait(1).to({x:-241.8},0).wait(1).to({x:-241.2},0).wait(1).to({x:-240.7},0).wait(1).to({x:-240.1},0).wait(1).to({x:-239.5},0).wait(1).to({x:-239},0).wait(1).to({x:-238.4},0).wait(1));
 
-	// Layer 1 copy
+	// Layer_4
 	this.instance_2 = new lib.hihna_1();
 	this.instance_2.parent = this;
-	this.instance_2.setTransform(-266,8.7,1,1,0,0,0,189.8,8.7);
+	this.instance_2.setTransform(196,46.5,1,1,0,0,0,189.8,8.7);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1).to({regX:172.9,x:-282.3},0).wait(1).to({x:-281.8},0).wait(1).to({x:-281.2},0).wait(1).to({x:-280.7},0).wait(1).to({x:-280.2},0).wait(1).to({x:-279.6},0).wait(1).to({x:-279.1},0).wait(1).to({x:-278.6},0).wait(1).to({x:-278},0).wait(1).to({x:-277.5},0).wait(1).to({x:-276.9},0).wait(1).to({x:-276.4},0).wait(1).to({x:-275.9},0).wait(1).to({x:-275.3},0).wait(1).to({x:-274.8},0).wait(1).to({x:-274.3},0).wait(1).to({x:-273.7},0).wait(1).to({x:-273.2},0).wait(1).to({x:-272.6},0).wait(1).to({x:-272.1},0).wait(1).to({x:-271.6},0).wait(1).to({x:-271},0).wait(1).to({x:-270.5},0).wait(1).to({x:-270},0).wait(1).to({x:-269.4},0).wait(1).to({x:-268.9},0).wait(1).to({x:-268.3},0).wait(1).to({x:-267.8},0).wait(1).to({x:-267.3},0).wait(1).to({x:-266.7},0).wait(1).to({x:-266.2},0).wait(1).to({x:-265.7},0).wait(1).to({x:-265.1},0).wait(1).to({x:-264.6},0).wait(1).to({x:-264},0).wait(1).to({x:-263.5},0).wait(1).to({x:-263},0).wait(1).to({x:-262.4},0).wait(1).to({x:-261.9},0).wait(1).to({x:-261.4},0).wait(1).to({x:-260.8},0).wait(1).to({x:-260.3},0).wait(1).to({x:-259.7},0).wait(1).to({x:-259.2},0).wait(1).to({x:-258.7},0).wait(1).to({x:-258.1},0).wait(1).to({x:-257.6},0).wait(1).to({x:-257.1},0).wait(1).to({x:-256.5},0).wait(1).to({x:-256},0).wait(1).to({x:-255.4},0).wait(1).to({x:-254.9},0).wait(1).to({x:-254.4},0).wait(1).to({x:-253.8},0).wait(1).to({x:-253.3},0).wait(1).to({x:-252.8},0).wait(1).to({x:-252.2},0).wait(1).to({x:-251.7},0).wait(1).to({x:-251.2},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1).to({regX:172.9,x:178.5},0).wait(1).to({x:177.9},0).wait(1).to({x:177.4},0).wait(1).to({x:176.8},0).wait(1).to({x:176.2},0).wait(1).to({x:175.7},0).wait(1).to({x:175.1},0).wait(1).to({x:174.5},0).wait(1).to({x:174},0).wait(1).to({x:173.4},0).wait(1).to({x:172.9},0).wait(1).to({x:172.3},0).wait(1).to({x:171.8},0).wait(1).to({x:171.2},0).wait(1).to({x:170.7},0).wait(1).to({x:170.1},0).wait(1).to({x:169.5},0).wait(1).to({x:169},0).wait(1).to({x:168.4},0).wait(1).to({x:167.8},0).wait(1).to({x:167.3},0).wait(1).to({x:166.7},0).wait(1).to({x:166.2},0).wait(1).to({x:165.6},0).wait(1).to({x:165},0).wait(1).to({x:164.5},0).wait(1).to({x:163.9},0).wait(1).to({x:163.3},0).wait(1).to({x:162.8},0).wait(1).to({x:162.2},0).wait(1).to({x:161.7},0).wait(1).to({x:161.1},0).wait(1).to({x:160.5},0).wait(1).to({x:160},0).wait(1).to({x:159.4},0).wait(1).to({x:158.8},0).wait(1).to({x:158.3},0).wait(1).to({x:157.7},0).wait(1).to({x:157.2},0).wait(1).to({x:156.6},0).wait(1).to({x:156},0).wait(1).to({x:155.5},0).wait(1).to({x:154.9},0).wait(1).to({x:154.3},0).wait(1).to({x:153.8},0).wait(1).to({x:153.2},0).wait(1).to({x:152.7},0).wait(1).to({x:152.1},0).wait(1).to({x:151.5},0).wait(1).to({x:151},0).wait(1).to({x:150.4},0).wait(1).to({x:149.8},0).wait(1).to({x:149.3},0).wait(1).to({x:148.7},0).wait(1).to({x:148.2},0).wait(1).to({x:147.6},0).wait(1).to({x:147},0).wait(1).to({x:146.5},0).wait(1).to({x:145.9},0).wait(1));
 
 	// Layer 1
 	this.instance_3 = new lib.hihna_1();
 	this.instance_3.parent = this;
-	this.instance_3.setTransform(163,8.7,1,1,0,0,0,189.8,8.7);
+	this.instance_3.setTransform(163,6.9,1,1,0,0,0,189.8,8.7);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(1).to({regX:172.9,x:146.7},0).wait(1).to({x:147.3},0).wait(1).to({x:147.8},0).wait(1).to({x:148.4},0).wait(1).to({x:149},0).wait(1).to({x:149.5},0).wait(1).to({x:150.1},0).wait(1).to({x:150.7},0).wait(1).to({x:151.2},0).wait(1).to({x:151.8},0).wait(1).to({x:152.3},0).wait(1).to({x:152.9},0).wait(1).to({x:153.5},0).wait(1).to({x:154},0).wait(1).to({x:154.6},0).wait(1).to({x:155.2},0).wait(1).to({x:155.7},0).wait(1).to({x:156.3},0).wait(1).to({x:156.8},0).wait(1).to({x:157.4},0).wait(1).to({x:158},0).wait(1).to({x:158.5},0).wait(1).to({x:159.1},0).wait(1).to({x:159.7},0).wait(1).to({x:160.2},0).wait(1).to({x:160.8},0).wait(1).to({x:161.3},0).wait(1).to({x:161.9},0).wait(1).to({x:162.5},0).wait(1).to({x:163},0).wait(1).to({x:163.6},0).wait(1).to({x:164.2},0).wait(1).to({x:164.7},0).wait(1).to({x:165.3},0).wait(1).to({x:165.8},0).wait(1).to({x:166.4},0).wait(1).to({x:167},0).wait(1).to({x:167.5},0).wait(1).to({x:168.1},0).wait(1).to({x:168.7},0).wait(1).to({x:169.2},0).wait(1).to({x:169.8},0).wait(1).to({x:170.3},0).wait(1).to({x:170.9},0).wait(1).to({x:171.5},0).wait(1).to({x:172},0).wait(1).to({x:172.6},0).wait(1).to({x:173.1},0).wait(1).to({x:173.7},0).wait(1).to({x:174.2},0).wait(1).to({x:174.8},0).wait(1).to({x:175.4},0).wait(1).to({x:175.9},0).wait(1).to({x:176.5},0).wait(1).to({x:177},0).wait(1).to({x:177.6},0).wait(1).to({x:178.2},0).wait(1).to({x:178.7},0).wait(1).to({x:179.3},0).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-456.8,0,812.3,55.1);
+p.nominalBounds = new cjs.Rectangle(-445.5,-1.8,798.5,57);
 
 
 // stage content:
@@ -665,7 +665,7 @@ p.nominalBounds = new cjs.Rectangle(-456.8,0,812.3,55.1);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_53},{t:this.instance_8},{t:this.instance_7}]}).wait(181));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(159.3,183.1,1362.7,674.2);
+p.nominalBounds = new cjs.Rectangle(174.4,183.1,1347.6,674.2);
 // library properties:
 lib.properties = {
 	id: '029D1531BEE7404DABC85B40615AE6CD',
@@ -675,7 +675,7 @@ lib.properties = {
 	color: "#3F3929",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/animation_test_atlas_.png", id:"animation_test_atlas_"}
+		{src:"images/animation1_atlas_.png", id:"animation1_atlas_"}
 	],
 	preloads: []
 };
