@@ -2,7 +2,7 @@ html, body {
    margin: 0;
    height: 100%;
    width: 100%;
-   background: #222;
+   background: #888;
 }
 
 #overlay {
@@ -17,30 +17,25 @@ html, body {
    background-color: rgba(0,0,0,0.5);
    z-index: 99;
    cursor: pointer;
-}
-
-#overlay p {
    text-align: center;
 }
 
-.puzzleContainer {
+#imgContainer {
+   font-size: 0;
    position: relative;
-   overflow: hidden;
-   margin: 0 auto;
-   width: 80%;
-   height: 70%;
+   margin: 30px auto;
+   width: 65%;
+   min-height: 50%;
 }
 
-.puzzleImg {
-   font-size: 0;
+#puzzleImg { width: 100%; }
+
+#slotsContainer {
+   position: absolute;
    height: 100%;
    width: 100%;
-}
-
-#puzzleImg {
-   display: block;
-   margin: 0 auto;
-   max-height: 100%;
+   top: 0;
+   z-index: 1;
 }
 
 .slot {
@@ -48,27 +43,22 @@ html, body {
    width: 20%;
    height: 25%;
    transition: 250ms;
-   filter: grayscale(1);
+   background: #fff;
+   opacity: .75;
 }
 
-/*.drop-hover {
-opacity: 0.5;
+.slot-hover {
+opacity: 0.4;
 }
 
-.pieces {
-position: absolute;
-text-align: right;
-right: 3%;
-top: 10%;
-width: 50%;
+#piecesContainer {
+   font-size: 0; /* remove space */
+   margin: 0 auto;
+   width: 65%;
 }
-*/
-.pieces img {
-   width: 100px;
+
+.piece {
+   width: 20%;
    cursor: move;
    box-shadow: 0 5px 15px rgba(0,0,0,.5);
 }
-
-.pieces img:hover {
-   filter: brightness(1.1);
-   }*/

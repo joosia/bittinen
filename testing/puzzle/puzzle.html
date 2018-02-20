@@ -1,4 +1,3 @@
-<!doctype html>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,59 +11,17 @@
    <div id="overlay">
       <p>You Won!</p>
    </div>
-   <div class="puzzleContainer">
-      <div class="puzzleImg">
-         <img id="puzzleImg" src="puzzle-cat.png"/>
-         <img src="pieces/p_01.gif" class="slot droppable" data-index="1">
-         <img src="pieces/p_02.gif" class="slot droppable" data-index="2">
-         <img src="pieces/p_03.gif" class="slot droppable" data-index="3">
-         <img src="pieces/p_04.gif" class="slot droppable" data-index="4">
-         <img src="pieces/p_05.gif" class="slot droppable" data-index="5">
-         <img src="pieces/p_06.gif" class="slot droppable" data-index="6">
-         <img src="pieces/p_07.gif" class="slot droppable" data-index="7">
-         <img src="pieces/p_08.gif" class="slot droppable" data-index="8">
-         <img src="pieces/p_09.gif" class="slot droppable" data-index="9">
-         <img src="pieces/p_10.gif" class="slot droppable" data-index="10">
-         <img src="pieces/p_11.gif" class="slot droppable" data-index="11">
-         <img src="pieces/p_12.gif" class="slot droppable" data-index="12">
-         <img src="pieces/p_13.gif" class="slot droppable" data-index="13">
-         <img src="pieces/p_14.gif" class="slot droppable" data-index="14">
-         <img src="pieces/p_15.gif" class="slot droppable" data-index="15">
-         <img src="pieces/p_16.gif" class="slot droppable" data-index="16">
-         <img src="pieces/p_17.gif" class="slot droppable" data-index="17">
-         <img src="pieces/p_18.gif" class="slot droppable" data-index="18">
-         <img src="pieces/p_19.gif" class="slot droppable" data-index="19">
-         <img src="pieces/p_20.gif" class="slot droppable" data-index="20">
-      </div>
+   <!-- Puzzle Image Container-->
+   <div id="imgContainer">
+      <img id="puzzleImg" src="puzzle-cat.png"/>
+      <!-- Slots -->
+      <div id=slotsContainer></div>
    </div>
-
-   <div class="pieces">
-      <img src="pieces/p_01.gif" class="draggable piece01" data-index="1">
-      <img src="pieces/p_02.gif" class="draggable" data-index="2">
-      <img src="pieces/p_03.gif" class="draggable" data-index="3">
-      <img src="pieces/p_04.gif" class="draggable" data-index="4">
-      <img src="pieces/p_05.gif" class="draggable" data-index="5">
-      <img src="pieces/p_06.gif" class="draggable" data-index="6">
-      <img src="pieces/p_07.gif" class="draggable" data-index="7">
-      <img src="pieces/p_08.gif" class="draggable" data-index="8">
-      <img src="pieces/p_09.gif" class="draggable" data-index="9">
-      <img src="pieces/p_10.gif" class="draggable" data-index="10">
-      <img src="pieces/p_11.gif" class="draggable" data-index="11">
-      <img src="pieces/p_12.gif" class="draggable" data-index="12">
-      <img src="pieces/p_13.gif" class="draggable" data-index="13">
-      <img src="pieces/p_14.gif" class="draggable" data-index="14">
-      <img src="pieces/p_15.gif" class="draggable" data-index="15">
-      <img src="pieces/p_16.gif" class="draggable" data-index="16">
-      <img src="pieces/p_17.gif" class="draggable"
-      data-index="17">
-      <img src="pieces/p_18.gif" class="draggable" data-index="18">
-      <img src="pieces/p_19.gif" class="draggable" data-index="19">
-      <img src="pieces/p_20.gif" class="draggable" data-index="20">
-   </div>
-
+   <!-- Puzzle Pieces -->
+   <div id="piecesContainer"></div>
 
    <!-- jQuery -->
-   <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+   <script src="jQuery.js">
    </script>
    <!-- jQueryUI -->
    <script src="jquery-ui.min.js">

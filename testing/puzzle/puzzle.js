@@ -1,15 +1,50 @@
-$(document).ready(function() {
+var puzzle = {}
+puzzle.pieces = [];
+puzzle.numOfPieces = 20;
+puzzle.draggable = ".piece";
+puzzle.droppable = ".slot"
 
-   $("body").click(function(){
-      $("#overlay").toggle("slow");
-   })
+// Creates slots for puzzle pieces
+puzzle.$createSlots = function (numOfPieces) {
+   for (var i = 0; i < numOfPieces; i++) {
+      var str = '<div class="slot" data-index="' + i + '"></div>';
+      $("#slotsContainer").append(str);
+   }
+};
+
+// Adds puzzle pieces
+puzzle.$addPieces = function (numOfPieces) {
+   // build <img> string
+   for (var i = 0; i < numOfPieces; i++) {
+      var str = '<img src="pieces/p' + i + '.gif" class="piece" data-index="' + i + '"></div>';
+      // push to array
+      puzzle.pieces.push(str);
+   }
+   while (puzzle.pieces.length > 0) {
+         var rndIndex = Math.floor(Math.random() * puzzle.pieces.length);
+         $("#piecesContainer").append(puzzle.pieces[rndIndex]);
+         // Remove the piece from array
+         puzzle.pieces.splice(rndIndex, 1);
+   }
+};
+
+// Removes element from dom
+puzzle.$remove = function () { $(this).remove();};
+
+// Show overlay on complete
+puzzle.$onComplete = function () {
+   $("#overlay").toggle("slow");
+};
+
+$(document).ready(function() {
+   puzzle.$createSlots(puzzle.numOfPieces);
+   puzzle.$addPieces(puzzle.numOfPieces);
 
    // Make .draggable elements draggable and stackable
-   $(".draggable").draggable({stack:"img"});
+   $(puzzle.draggable).draggable({stack:"img"});
 
    // Add droppable target
-   $('.puzzleImg img[data-index]').droppable({
-
+   $(puzzle.droppable).droppable({
       accept: function(piece) {
          var dragIndex, dropIndex;
 
@@ -18,25 +53,12 @@ $(document).ready(function() {
          // if the data-index matches accept drop
          return dropIndex == dragIndex;
       },
-      hoverClass : "drop-hover",
+      hoverClass : "slot-hover",
       drop: function(event, ui) {
-         $(ui.draggable).fadeTo("slow", 0.0);
-         $(this).css("filter","grayscale(0)");
+         $(ui.draggable).fadeTo("slow", 0.0),
+         $(this).fadeTo("slow", 0.0, function(){
+            $(this).css({"visibility" : "hidden"});
+         });
       }
    });
-
-   // Remove element
-   function removeEl() {
-      $(this).remove();
-   }
-
-   $(".slot").css("display", "none");
-
-   //
-   // if( $(".pieces").has("img") ) {
-   // }
-   // else {
-   //   $("#overlay").toggle("slow");
-   // }
-
 }); // document ready
