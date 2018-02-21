@@ -25,12 +25,13 @@ html, body {
    position: relative;
    margin: 30px auto;
    width: 65%;
-   min-height: 50%;
+  
 }
 
-#puzzleImg { width: 100%; }
+#puzzleImg { width: 100%; min-height: 100%;}
 
 #slotsContainer {
+   font-size: 0;
    position: absolute;
    height: 100%;
    width: 100%;
