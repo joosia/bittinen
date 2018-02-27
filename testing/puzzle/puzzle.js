@@ -2,10 +2,10 @@ var puzzle = {}
 puzzle.pieces = [];
 puzzle.numOfPieces = 20;
 puzzle.draggable = ".piece";
-puzzle.droppable = ".slot"
+puzzle.droppable = ".slot";
 
 // Creates slots for puzzle pieces
-puzzle.$createSlots = function (numOfPieces) {
+puzzle.createSlots = function (numOfPieces) {
    for (var i = 0; i < numOfPieces; i++) {
       var str = '<div class="slot" data-index="' + i + '"></div>';
       $("#slotsContainer").append(str);
@@ -13,7 +13,7 @@ puzzle.$createSlots = function (numOfPieces) {
 };
 
 // Adds puzzle pieces
-puzzle.$addPieces = function (numOfPieces) {
+puzzle.addPieces = function (numOfPieces) {
    // build <img> string
    for (var i = 0; i < numOfPieces; i++) {
       var str = '<img src="pieces/p' + i + '.gif" class="piece" data-index="' + i + '"></div>';
@@ -29,16 +29,16 @@ puzzle.$addPieces = function (numOfPieces) {
 };
 
 // Removes element from dom
-puzzle.$remove = function () { $(this).remove();};
+puzzle.remove = function () { $(this).remove();};
 
 // Show overlay on complete
-puzzle.$onComplete = function () {
+puzzle.onComplete = function () {
    $("#overlay").toggle("slow");
 };
 
 $(document).ready(function() {
-   puzzle.$createSlots(puzzle.numOfPieces);
-   puzzle.$addPieces(puzzle.numOfPieces);
+   puzzle.createSlots(puzzle.numOfPieces);
+   puzzle.addPieces(puzzle.numOfPieces);
 
    // Make .draggable elements draggable and stackable
    $(puzzle.draggable).draggable({stack:"img"});
