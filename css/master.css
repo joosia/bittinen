@@ -11,8 +11,8 @@ html, body {
 }
 
 h1, h2, h3, h4 {
-   font-family: 'Fredoka One', cursive;
-   text-align: center;
+	font-family: 'Fredoka One', cursive;
+	text-align: center;
 }
 
 iframe {
@@ -53,12 +53,23 @@ a:hover { color: #555;}
    position: relative;
 }
 
-.chevron {
-   width: 20%;
+.bottom {
+	width: 20%;
+	text-align: center;
+	font-weight: bold;
    position: absolute;
    bottom: 2%;
    right: 40%;
    left: 40%;
+}
+
+.bottom h4 {
+	margin: 0 0 20px 0;
+}
+
+.arrow-up {
+	font-size: 200%;
+	font-weight: bold;
 }
 
 #first {
@@ -191,7 +202,7 @@ a:hover { color: #555;}
 	width: 70%;
 	border: 1px solid rgba(150, 206,180, 0);
 	border-radius: 5px;
-   font-size: 0.9em;
+   font-size: 100%;
    opacity: 0;
 	animation-delay: 4s; /* fade-in */
 	transition: ease-in-out 250ms;
