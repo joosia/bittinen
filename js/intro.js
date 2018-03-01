@@ -3,6 +3,7 @@ $(document).ready(function () {
 	/*–––––––––––––––––––*/
 	/*––––– Intro   –––––*/
 	/*–––––––––––––––––––*/
+
 	var browser = $("#browser");
 	var form = $("#form");
 	var url = $("#url");
@@ -40,92 +41,20 @@ $(document).ready(function () {
 		}, 700);
 	});
 
-	/*––––––––––––––––––*/
-	/*––––– Puzzle –––––*/
-	/*––––––––––––––––––*/
-	// url.off();
-	$("#startPuzzle").click(function(){
-		$("#puzzleImg").css("display", "block");
-		$("#slotsContainer").css("display", "block");
-		$("#piecesContainer").css("display", "block");
-	});
-	var puzzle = {}
-	puzzle.pieces = [];
-	puzzle.numOfPieces = 20;
-	puzzle.draggable = ".piece";
-	puzzle.droppable = ".slot";
-
-	// Creates slots for puzzle pieces
-	puzzle.createSlots = function (numOfPieces) {
-		$("#slotsContainer").css("height", $("#puzzleImg").height() + 1);
-		for (var i = 0; i < numOfPieces; i++) {
-			var str = '<div class="slot" data-index="' + i + '"></div>';
-			$("#slotsContainer").append(str);
-		}
-	};
-
-	// Adds puzzle pieces
-	puzzle.addPieces = function (numOfPieces) {
-		// build <img> string
-		for (var i = 0; i < numOfPieces; i++) {
-			var str = '<img src="img/pieces/p' + i + '.gif" class="piece" data-index="' + i + '"></div>';
-			// push to array
-			puzzle.pieces.push(str);
-		}
-		while (puzzle.pieces.length > 0) {
-			var rndIndex = Math.floor(Math.random() * puzzle.pieces.length);
-			$("#piecesContainer").append(puzzle.pieces[rndIndex]);
-			// Remove the piece from array
-			puzzle.pieces.splice(rndIndex, 1);
-		}
-	};
-
-	// Removes element from dom
-	puzzle.remove = function () { $(this).remove(); };
-
-	// Show overlay on complete
-	puzzle.onComplete = function () {
-		$("#overlay").toggle("slow");
-	};
-	puzzle.createSlots(puzzle.numOfPieces);
-	puzzle.addPieces(puzzle.numOfPieces);
-
-	// Make .draggable elements draggable and stackable
-	$(puzzle.draggable).draggable({ stack: "img" });
-
-	// Add droppable target
-	$(puzzle.droppable).droppable({
-		accept: function (piece) {
-			var dragIndex, dropIndex;
-
-			dropIndex = $(piece).attr("data-index")
-			dragIndex = $(this).attr("data-index")
-			// if the data-index matches accept drop
-			return dropIndex == dragIndex;
-		},
-		hoverClass: "slot-hover",
-		drop: function (event, ui) {
-			$(ui.draggable).fadeTo("slow", 0.0),
-				$(this).fadeTo("slow", 0.0, function () {
-					$(this).css({ "visibility": "hidden" });
-				});
-		}
-	});
 
 
 	/*––––––––––––––––––*/
 	/*––––– Other  –––––*/
 	/*––––––––––––––––––*/
-	// jQuery: Smooth Scroll on click (link-elements)
-	$('a').on("click", function () {
+	
+	$('a').on("click", function () { // jQuery: Smooth Scroll to anchor-link
 		$('html, body').animate({
 			scrollTop: $($(this).attr('href')).offset().top
 		}, 700);
 		return false;
 	});
 	
-	// Smooth Scroll on arrow keys
-	$(document).keydown(function (event) {
+	$(document).keydown(function (event) { 	// jQuery: Smooth Scroll on arrow keys
 		switch (event.which) {
 			case 38: // Arrow Up
 				$("html, body").animate({

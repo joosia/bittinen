@@ -9,20 +9,20 @@
 	<!--FONTS: Fredoka One % Noto Sans -->
 	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Noto+Sans" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="css/master.css" />
+	<link rel="stylesheet" type="text/css" href="css/master.css"/>
 </head>
 
 <body>
 	<!-- Intro -->
 	<div id="intro" class="full-screen">
 		<img id="logo" class="fade-in select-disable" draggable="false" ondragstart="return false;" src="img/logo.svg" alt="logo"/>
-		<!-- <div id="overlay">
-						<p>You Won!</p>
-					</div> -->
+		<div id="overlay">
+			<h1>Mahtavaa! Sait palat oikeaan järjestykseen.</h1>
+		</div>
 		<!-- Puzzle -->
-		<!-- <div id="puzzle"> -->
-		<div id="piecesContainer"></div>
-		<!-- </div> -->
+		<div id="no-scroll">
+			<div id="pieces-container"></div>
+		</div>
 		<div class="browser-container">
 			<div id="scale">
 				<form id="form" action="#first" autocomplete="url">
@@ -30,8 +30,8 @@
 				</form>
 				<img id="browser" class="select-disable" src="img/browser-bittinen.svg" draggable="false" ondragstart="return false;"/>
 			</div>
-			<img id="puzzleImg" src="img/puzzle-cat.png"/>
-			<div id=slotsContainer></div>
+			<img id="puzzle-img" src="img/puzzle-cat.png"/>
+			<div id=slots-container></div>
 		</div>
 	</div>
 
@@ -52,7 +52,7 @@
 		</div>
 		<div class="bottom">
 			<a href="#intro">
-				<span class="arrow-up" id="startPuzzle">⌃</span>
+				<span class="arrow-up" id="start-puzzle">⌃</span>
 			</a>
 			<h4>Go to Puzzle</h4>
 		</div>
@@ -63,5 +63,6 @@
 	<script src="js/jquery-ui.min.js"></script>
 	<!-- Master JS -->
 	<script src="js/intro.js"></script>
+	<script src="js/puzzle.js"></script>
 </body>
 </html>
