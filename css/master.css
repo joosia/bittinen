@@ -271,7 +271,7 @@ a:hover { color: #555;}
 	font-size: 0; /* remove white space */
 	position: absolute;
 	bottom: 0;
-	z-index: 98
+	z-index: 90;
 }
 
 .slot {
@@ -286,9 +286,12 @@ a:hover { color: #555;}
 #pieces-container {
 	display: none;
 	position: absolute;
+	height: 100%;
+	max-width: 100%;
    font-size: 0; /* remove white space */
 	margin: 0 auto;
-	z-index: 99;
+	z-index: 91;
+	overflow: hidden;
 }
 
 #no-scroll {
@@ -296,7 +299,6 @@ a:hover { color: #555;}
 }
 
 .piece {
-	position: absolute;
    cursor: move;
    box-shadow: 0 5px 15px rgba(0,0,0,.5);
 }

@@ -143,7 +143,7 @@ puzzle.init = function () {
     window.addEventListener("resize", puzzle.setSize);
 
     // jQuery UI drag & drop
-    $(".piece").draggable({ stack: "img" });
+    $(".piece").draggable({ stack: "img", revert: "invalid"});
     $(".slot").droppable({
         accept: function (piece) {
             var dragIndex, dropIndex;
@@ -153,8 +153,8 @@ puzzle.init = function () {
             return dropIndex == dragIndex;
         }, hoverClass: "slot-hover",
         drop: function (event, ui) {
-            $(ui.draggable).fadeTo("slow", 0.0);
-            $(this).fadeTo("slow", 0.0);
+            // $(ui.draggable).fadeTo("slow", 0.0);
+            // $(this).fadeTo("slow", 0.0);
             puzzle.numOfPieces--;
             if (puzzle.numOfPieces == 0) {
                 puzzle.onComplete();
@@ -182,6 +182,7 @@ puzzle.setSize = function () {
 // Create slots and pieces
 puzzle.createPieces = function () {
     var offset = 0;
+    var maxLeft = puzzle.wTotal - puzzle.w;
     for (var i = 0; i < puzzle.numOfPieces; i++) {
         // Build slot string
         var slot = '<div style="width:' + puzzle.w + 'px; height:' + puzzle.h + 'px;" class="slot" data-index="' + i + '"></div>';
@@ -190,7 +191,7 @@ puzzle.createPieces = function () {
         var piece = '<img src="img/pieces/p' + i + '.gif" class="piece" data-index="' + i + '" style="width:' + puzzle.w + 'px;height:' + puzzle.h + 'px; left:' + offset + 'px"/>';
         // push to array
         puzzle.piecesArr.push(piece);
-        offset += 50;
+        offset += 5;
     }
     while (puzzle.piecesArr.length > 0) {
         var rndIndex = Math.floor(Math.random() * puzzle.piecesArr.length);
@@ -199,11 +200,10 @@ puzzle.createPieces = function () {
         puzzle.piecesArr.splice(rndIndex, 1);
     }
 };
-// Removes element from dom
+// Removes element from DOM
 puzzle.remove = function () { $(this).remove(); };
 // Show overlay on complete
 puzzle.onComplete = function () {
-    console.log("Puzzle Complete!");
     document.querySelector("#overlay").style.display = "flex";
 };
 
