@@ -39,6 +39,7 @@ $(document).ready(function () {
 		$('html, body').animate({
 			scrollTop: $($(this).attr('action')).offset().top
 		}, 700);
+		this.remove();
 	});
 
 

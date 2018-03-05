@@ -268,16 +268,16 @@ a:hover { color: #555;}
 
 #slots-container {
 	display: none;
+	font-size: 0; /* remove white space */
 	position: absolute;
 	bottom: 0;
 	z-index: 98
 }
 
 .slot {
-   float: left;
+	float: left;
    background: #fff;
 	opacity: .75;
-	font-size: 0;
 }
 .slot-hover {
 	opacity: 0.4;
@@ -288,7 +288,6 @@ a:hover { color: #555;}
 	position: absolute;
    font-size: 0; /* remove white space */
 	margin: 0 auto;
-	width: 100%;
 	z-index: 99;
 }
 
@@ -302,7 +301,7 @@ a:hover { color: #555;}
    box-shadow: 0 5px 15px rgba(0,0,0,.5);
 }
 .piece:active {
-	transition: ease-in-out 250ms;
+	/* transition: ease-in-out 250ms; */
     -ms-transform: scale(1.1); /* IE 9 */
    -webkit-transform: scale(1.1); /* Safari */
    transform: scale(1.1);
