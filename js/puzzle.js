@@ -143,7 +143,7 @@ puzzle.init = function () {
     window.addEventListener("resize", puzzle.setSize);
 
     // jQuery UI drag & drop
-    $(".piece").draggable({ stack: "img", revert: "invalid"});
+    $(".piece").draggable({ stack: "img"});
     $(".slot").droppable({
         accept: function (piece) {
             var dragIndex, dropIndex;
@@ -153,8 +153,8 @@ puzzle.init = function () {
             return dropIndex == dragIndex;
         }, hoverClass: "slot-hover",
         drop: function (event, ui) {
-            // $(ui.draggable).fadeTo("slow", 0.0);
-            // $(this).fadeTo("slow", 0.0);
+            $(ui.draggable).fadeTo("slow", 0.0);
+            $(this).fadeTo("slow", 0.0);
             puzzle.numOfPieces--;
             if (puzzle.numOfPieces == 0) {
                 puzzle.onComplete();
