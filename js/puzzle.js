@@ -110,6 +110,7 @@
 })(jQuery);
 
 
+
 /*–––––––––––––––––––––––––––––––––––––*
 | SQUARE JIGSAW PUZZLE                 |
 | A simple javascript plus jQuery UI   |
@@ -130,6 +131,8 @@ puzzle.numOfPieces = puzzle.rows * puzzle.cols;
 puzzle.img = document.querySelector("#puzzle-img");
 puzzle.slots = document.querySelector("#slots-container");
 puzzle.pieces = document.querySelector("#pieces-container");
+// puzzle.sound1 = new Howl({src: ['sounds/zig-zag.mp3']});
+// puzzle.sound2 = new Howl({ src: ['sounds/zig-zag.mp3'] });
 
 puzzle.init = function () {
     // Display Elements
@@ -155,8 +158,7 @@ puzzle.init = function () {
         drop: function (event, ui) {
             $(ui.draggable).fadeTo("slow", 0.0);
             $(this).fadeTo("slow", 0.0);
-            puzzle.numOfPieces--;
-            if (puzzle.numOfPieces == 0) {
+            if (puzzle.slots.childNodes.length == 0) {
                 puzzle.onComplete();
             }
         }
@@ -200,10 +202,11 @@ puzzle.createPieces = function () {
         puzzle.piecesArr.splice(rndIndex, 1);
     }
 };
-// Removes element from DOM
-puzzle.remove = function () { $(this).remove(); };
+
 // Show overlay on complete
 puzzle.onComplete = function () {
+    puzzle.slots.remove()
+    puzzle.pieces.remove()
     document.querySelector("#overlay").style.display = "flex";
 };
 
