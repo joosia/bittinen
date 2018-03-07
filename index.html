@@ -16,14 +16,12 @@
 	<!-- Intro -->
 	<div id="intro" class="full-screen">
 		<img id="logo" class="fade-in select-disable" draggable="false" ondragstart="return false;" src="img/logo.svg" alt="logo"/>
-		<div id="overlay">
-			<h1>Mahtavaa! Sait palat oikeaan järjestykseen.</h1>
+		<div class="overlay-shadow">
+			<div id="overlay">
+				<h1>Mahtavaa! Sait palat oikeaan järjestykseen.</h1>
+			</div>
 		</div>
-		<!-- Puzzle -->
-		<div id="no-scroll">
-			<div id="pieces-container" class="select-disable"></div>
-		</div>
-		<div class="browser-container">
+		<div id="browser-container">
 			<div id="scale">
 				<form id="form" action="#first" autocomplete="url">
 					<input id="url" class="fade-in" type="url" placeholder="https://" value="https://"/>
@@ -32,6 +30,10 @@
 			</div>
 			<img id="puzzle-img" src="img/puzzle-cat.png"/>
 			<div id=slots-container></div>
+		</div>
+		<!-- Puzzle -->
+		<div id="no-scroll">
+			<div id="pieces-container" class="select-disable"></div>
 		</div>
 	</div>
 
@@ -52,7 +54,7 @@
 		</div>
 		<div class="bottom">
 			<a href="#intro">
-				<span class="arrow-up" id="start-puzzle">⌃</span>
+<span class="arrow-up" id="go-to-puzzle">⌃</span>
 			</a>
 			<h4>Go to Puzzle</h4>
 		</div>

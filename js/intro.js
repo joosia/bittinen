@@ -33,6 +33,7 @@ $(document).ready(function () {
 
 	// Function on url-submit
 	form.submit(function () {
+		url.blur();
 		// Add first animation
 		$("#first").append('<iframe id="animation1" src="animations/animation1.html" frameborder="none"></iframe>');
 		// Animate scroll to #first

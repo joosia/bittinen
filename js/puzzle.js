@@ -131,6 +131,7 @@ puzzle.numOfPieces = puzzle.rows * puzzle.cols;
 puzzle.img = document.querySelector("#puzzle-img");
 puzzle.slots = document.querySelector("#slots-container");
 puzzle.pieces = document.querySelector("#pieces-container");
+puzzle.overlay = document.querySelector("#overlay");
 // puzzle.sound1 = new Howl({src: ['sounds/zig-zag.mp3']});
 // puzzle.sound2 = new Howl({ src: ['sounds/zig-zag.mp3'] });
 
@@ -146,19 +147,30 @@ puzzle.init = function () {
     window.addEventListener("resize", puzzle.setSize);
 
     // jQuery UI drag & drop
-    $(".piece").draggable({ stack: "img"});
+    $(".piece").draggable({ 
+        stack: "img", 
+        containment: puzzle.pieces
+    }).on("mousedown mouseup", function(){
+        $(this).toggleClass("scale-up-fast");
+    });
+
     $(".slot").droppable({
         accept: function (piece) {
             var dragIndex, dropIndex;
-            dropIndex = $(piece).attr("data-index");
-            dragIndex = $(this).attr("data-index");
+            dragIndex = $(piece).attr("data-index");
+            dropIndex = $(this).attr("data-index");
             // if the data-index matches accept drop
-            return dropIndex == dragIndex;
-        }, hoverClass: "slot-hover",
+            return dragIndex === dropIndex
+        }, 
+        hoverClass: function(){
+            $(this).toggleClass("slot-hover");
+            $(".piece").toggleClass("valid");
+        },
         drop: function (event, ui) {
-            $(ui.draggable).fadeTo("slow", 0.0);
+            ui.draggable.fadeTo("slow", 0.0);
             $(this).fadeTo("slow", 0.0);
-            if (puzzle.slots.childNodes.length == 0) {
+            puzzle.numOfPieces--;
+            if (puzzle.numOfPieces === 0) {
                 puzzle.onComplete();
             }
         }
@@ -190,7 +202,7 @@ puzzle.createPieces = function () {
         var slot = '<div style="width:' + puzzle.w + 'px; height:' + puzzle.h + 'px;" class="slot" data-index="' + i + '"></div>';
         puzzle.slots.insertAdjacentHTML("beforeend", slot);
         // Build piece string
-        var piece = '<img src="img/pieces/p' + i + '.gif" class="piece" data-index="' + i + '" style="width:' + puzzle.w + 'px;height:' + puzzle.h + 'px; left:' + offset + 'px"/>';
+        var piece = '<img src="img/pieces/p' + i + '.gif" class="piece" data-index="' + i + '" style="width:' + puzzle.w + 'px;height:' + puzzle.h + 'px; left:' + offset + 'px; top:' + offset + 'px"/>';
         // push to array
         puzzle.piecesArr.push(piece);
         offset += 5;
@@ -202,15 +214,39 @@ puzzle.createPieces = function () {
         puzzle.piecesArr.splice(rndIndex, 1);
     }
 };
-
+// Removes element from DOM
+remove = function () { $(this).remove(); };
 // Show overlay on complete
 puzzle.onComplete = function () {
     puzzle.slots.remove()
     puzzle.pieces.remove()
-    document.querySelector("#overlay").style.display = "flex";
+    document.querySelector(".overlay-shadow").style.opacity = "1";
+    document.querySelector(".overlay-shadow").style.visibility = "visible";
+    puzzle.overlay.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Vaikka vaiheita on matkan varrella useita, niin todellisuudessa matka taittuu tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='img/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
+    puzzle.overlay.style.visibility = "visible";
+    puzzle.overlay.style.opacity = "1";
+    document.querySelector("#overlay-btn").addEventListener("click", function () {
+        // Hide pop-up
+        puzzle.overlay.style.opacity = "0";
+        puzzle.overlay.style.visibility = "hidden";
+        document.querySelector(".overlay-shadow").style.opacity = "0";
+        document.querySelector(".overlay-shadow").style.visibility = "hidden";
+    });
 };
 
-// Start Button
-document.querySelector("#start-puzzle").addEventListener("click", function () {
+// Start Puzzle
+document.querySelector("#go-to-puzzle").addEventListener("click", function () {
     puzzle.init();
+    // Show pop-up
+    document.querySelector(".overlay-shadow").style.display = "block";
+    puzzle.overlay.style.display = "block";
+    puzzle.overlay.innerHTML = "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät usein paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p></br><div id='overlay-btn'>Aloita Palapeli</div>";
+    document.querySelector("#overlay-btn").addEventListener("click", function () {
+        // Hide pop-up
+        puzzle.overlay.style.opacity = "0";
+        puzzle.overlay.style.visibility = "hidden";
+        document.querySelector(".overlay-shadow").style.opacity = "0";
+        document.querySelector(".overlay-shadow").style.visibility = "hidden";
+
+    });
 });
