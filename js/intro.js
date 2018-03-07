@@ -32,15 +32,17 @@ $(document).ready(function () {
 	});
 
 	// Function on url-submit
-	form.submit(function () {
-		url.blur();
-		// Add first animation
-		$("#first").append('<iframe id="animation1" src="animations/animation1.html" frameborder="none"></iframe>');
-		// Animate scroll to #first
-		$('html, body').animate({
-			scrollTop: $($(this).attr('action')).offset().top
-		}, 700);
-		this.remove();
+	$("input").on("keypress", function(e){
+		if (e.which === 13) {
+			url.blur();
+			// Add first animation
+			$("#first").append('<iframe id="animation1" src="animations/animation1.html" frameborder="none"></iframe>');
+			// Animate scroll to #first
+			$('html, body').animate({
+				scrollTop: $($(first)).offset().top
+			}, 700);
+			form.remove();
+		}
 	});
 
 

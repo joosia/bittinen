@@ -222,7 +222,7 @@ puzzle.onComplete = function () {
     puzzle.pieces.remove()
     document.querySelector(".overlay-shadow").style.opacity = "1";
     document.querySelector(".overlay-shadow").style.visibility = "visible";
-    puzzle.overlay.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Vaikka vaiheita on matkan varrella useita, niin todellisuudessa matka taittuu tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='img/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
+    puzzle.overlay.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='img/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
     puzzle.overlay.style.visibility = "visible";
     puzzle.overlay.style.opacity = "1";
     document.querySelector("#overlay-btn").addEventListener("click", function () {
@@ -240,7 +240,7 @@ document.querySelector("#go-to-puzzle").addEventListener("click", function () {
     // Show pop-up
     document.querySelector(".overlay-shadow").style.display = "block";
     puzzle.overlay.style.display = "block";
-    puzzle.overlay.innerHTML = "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät usein paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p></br><div id='overlay-btn'>Aloita Palapeli</div>";
+    puzzle.overlay.innerHTML = "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p></br><div id='overlay-btn'>Aloita</div>";
     document.querySelector("#overlay-btn").addEventListener("click", function () {
         // Hide pop-up
         puzzle.overlay.style.opacity = "0";
