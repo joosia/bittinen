@@ -295,7 +295,7 @@ a:hover { color: #555;}
 	transition: 200ms;
 }
 #overlay-btn:active {
-	box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.3);
 	transition: none;
 }
 #overlay-btn:hover { background: rgb(140, 196, 170);}
