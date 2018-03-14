@@ -406,6 +406,12 @@ a:hover {
 	margin: 4% 0%;
 }
 
+@media only screen and (max-width: 900px) {
+	#url {
+		font-size: 10px;
+	}
+}
+
 /*––––––––––––––––––––––––––––––––––––*/
 
 /*––––– If screen width  too low –––––*/
