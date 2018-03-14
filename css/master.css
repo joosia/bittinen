@@ -1,17 +1,103 @@
+/*––––––––––––––––––––––––––*/
+/*––––– CSS animations –––––*/
+/*––––––––––––––––––––––––––*/
+@keyframes logo {
+	100% {
+		-ms-transform: translateY(-400%);
+		-moz-transform: translateY(-400%);
+		-o-transform: translateY(-400%);
+		-webkit-transform: translateY(-400%);
+		transform: translateY(-400%);
+	}}
+@keyframes browser {
+	50% {
+		-ms-transform: translateY(-35%);
+		-webkit-transform: translateY(-35%);
+		-moz-transform: translateY(-35%);
+		-o-transform: translateY(-35%);
+		transform: translateY(-35%);
+	}
+	100% {
+		-ms-transform: translateY(-98%);
+		-moz-transform: translateY(-98%);
+		-webkit-transform: translateY(-98%);
+		-o-transform: translateY(-35%);
+		transform: translateY(-98%);
+	}}
+
+@keyframes scale-up {
+	100% {
+		-ms-transform: scale(1.1);
+		-webkit-transform: scale(1.1);
+		-o-transform: scale(1.1);
+		-moz-transform: scale(1, 1);
+		transform: scale(1.1);
+	}
+}
+@keyframes skew {
+	0% {
+		-ms-transform: skew(0deg, 0deg);
+		-webkit-transform: skew(0deg, 0deg);
+		-o-transform: skew(0deg, 0deg);
+		-moz-transform: skew(0deg, 0deg);
+		transform: skew(0deg, 0deg)
+	}
+	50% {
+		-ms-transform: skew(-1deg, 2deg);
+		-webkit-transform: skew(-1deg, 2deg);
+		-o-transform: skew(-1deg, 2deg);
+		-moz-transform: skew(-1deg, 2deg);
+		transform: skew(-1deg, 2deg);
+	}
+	100% {
+		-ms-transform: skew(0deg, 0deg);
+		-webkit-transform: skew(0deg, 0deg);
+		-o-transform: skew(0deg, 0deg);
+		-moz-transform: skew(0deg, 0deg);
+		transform: skew(0deg, 0deg);
+	}}
+@keyframes fade-in {0% {opacity: 0;} 100% {opacity: 1;}};
+
+@keyframes valid { 100% { box-shadow: 0 0 8px rgb(150, 206, 180);}}
+
+@keyframes bgColor {
+	0% {
+		background-color: rgb(150, 206, 180);
+	}
+	25% {
+		background-color: rgb(255, 238, 173);
+	}
+	50% {
+		background-color: rgb(255, 111, 105);
+	}
+	75% {
+		background-color: rgb(255, 204, 92);
+	}
+	90% {
+		background-color: rgb(170, 216, 176);
+	}
+	100% {
+		background-color: rgb(150, 206, 180);
+	}
+}
+
 /*––––––––––––––––––––––*/
 /*––––– Global CSS –––––*/
 /*––––––––––––––––––––––*/
-
-html, body {
-   height: 100%;
-   margin: 0;
-   padding: 0;
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
 	color: #333;
 	font-size: 100%;
-   font-family: 'Noto Sans', sans-serif;
+	font-family: 'Noto Sans', sans-serif;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
 	font-family: 'Fredoka One', sans-serif;
 	text-align: center;
 }
@@ -21,47 +107,50 @@ iframe {
 }
 
 a {
-   text-decoration: none;
-   color: #333;
+	text-decoration: none;
+	color: #333;
 }
-a:hover { color: #555;}
+
+a:hover {
+	color: #555;
+}
 
 .fade-in {
-   transition-delay: 1s;
-   animation-name: fade-in;
-   animation-duration: 1s;
-   animation-fill-mode: forwards;
+	transition-delay: 1s;
+	animation-name: fade-in;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
 }
 
-.select-disable { 
+.select-disable {
 	/*Disable highlight selection on imgs */
-   -webkit-user-select: none;
-   -khtml-user-select: none;
-   -moz-user-select: none;
-   -o-user-select: none;
-   user-select: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 
 .full-screen {
-   height: 100%;
-   width: 100%;
-   position: relative;
-   overflow: hidden;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
 }
 
 .content {
-   padding: 5% 5%;
-   position: relative;
+	padding: 5% 5%;
+	position: relative;
 }
 
 .bottom {
 	width: 20%;
 	text-align: center;
 	font-weight: bold;
-   position: absolute;
-   bottom: 2%;
-   right: 40%;
-   left: 40%;
+	position: absolute;
+	bottom: 2%;
+	right: 40%;
+	left: 40%;
 }
 
 .bottom h4 {
@@ -74,13 +163,13 @@ a:hover { color: #555;}
 }
 
 #first {
-   background: #96CEB4;
-   background-position: center;
-   background-size: cover;
+	background: #96CEB4;
+	background-position: center;
+	background-size: cover;
 }
 
 #second {
-   background: #FFEEAD;
+	background: #FFEEAD;
 }
 
 /* #third {
@@ -95,113 +184,64 @@ a:hover { color: #555;}
    background: #AAD8B0;
 } */
 
-
 /*–––––––––––––––––––––*/
+
 /*––––– Intro CSS –––––*/
+
 /*–––––––––––––––––––––*/
-
-@keyframes logo {
-	100% {
-	-ms-transform: translateY(-400%); /* IE 9 */
-   -webkit-transform: translateY(-400%); /* Safari */
-	transform: translateY(-400%);}
-}
-
-@keyframes browser {
-	50% {
-		-ms-transform: translateY(-35%); /* IE 9 */
-    	-webkit-transform: translateY(-35%); /* Safari */
-    	transform: translateY(-35%);
-	} 100% {
-		-ms-transform: translateY(-98%); /* IE 9 */
-    	-webkit-transform: translateY(-98%); /* Safari */
-    	transform: translateY(-98%);
-	}
-}	
-
-@keyframes scale-up {
-	100% {
-		-ms-transform: scale(1.1);
-		-webkit-transform: scale(1.1);
-		transform: scale(1.1);
-	}
-}
-
-@keyframes skew {
-		0% {
-			transform: skew(0deg,0deg)
-		}
-		50% {transform: skew(-1deg,2deg);
-		}
-		100% {
-			transform: skew(0deg,0deg);
-		}
-}
-
-@keyframes fade-in {0% {opacity: 0;}100% {opacity:1;}}
-
-@keyframes valid {
-	100% {box-shadow: 0 0 8px rgb(150, 206, 180);}
-}
-
-@keyframes bgColor {
-    0%   {background-color:rgb(150, 206,180);}
-    25%  {background-color:rgb(255, 238,173);}
-    50%  {background-color:rgb(255, 111, 105);}
-    75%  {background-color:rgb(255, 204, 92);}
-    90% {background-color:rgb(170, 216, 176 );}
-    100%   {background-color:rgb(150, 206,180);}
-}
 
 #intro {
-   animation-name: bgColor;
-   animation-duration: 10s;
-   animation-iteration-count: infinite;
+	animation-name: bgColor;
+	animation-duration: 10s;
+	animation-iteration-count: infinite;
 	animation-fill-mode: forwards;
 }
 
 #logo {
-   position: absolute;
+	position: absolute;
 	top: 35%;
 	left: 25%;
 	width: 50%;
-   animation-name: logo;
-   animation-delay: 2.5s;
-   animation-duration: 1.5s;
-   animation-fill-mode: forwards;
+	animation-name: logo;
+	animation-delay: 2.5s;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
 }
 
 #browser-container {
 	position: absolute;
-	font-size: 0; /* remove white space */
-	z-index:0;
+	font-size: 0;
+	/* remove white space */
+	z-index: 0;
 	top: 100%;
 	left: 13%;
-	width: 74%; 
+	width: 74%;
 	animation-name: browser;
-   animation-delay: 1s;
-   animation-duration: 3s;
+	animation-delay: 1s;
+	animation-duration: 3s;
 	animation-fill-mode: forwards;
 }
 
 #scale {
-		transition: ease-in-out 500ms; 
+	transition: ease-in-out 500ms;
 }
 
 /* Scale browser and url */
 .scale-up {
-   -ms-transform: scale(1.1); /* IE 9 */
-   -webkit-transform: scale(1.1); /* Safari */
-   transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 #browser {
 	position: relative;
-   display: block;
+	display: block;
 	height: 100%;
 	width: 100%;
 	border-radius: 15px;
-   box-shadow: 0px 10px 20px rgba(0,0,0,0.4);
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 #form {
@@ -221,13 +261,15 @@ a:hover { color: #555;}
 	padding: 0 10px;
 	margin: 0 15%;
 	width: 70%;
-	border: 1px solid rgba(150, 206,180, 0);
+	border: 1px solid rgba(150, 206, 180, 0);
 	border-radius: 5px;
-   font-size: 16px;
-   opacity: 0;
-	animation-delay: 4s; /* fade-in */
+	font-size: 16px;
+	opacity: 0;
+	animation-delay: 4s;
+	/* fade-in */
 	transition: ease-in-out 250ms;
 }
+
 #form:hover #url {
 	box-shadow: 0 0 8px rgb(255, 204, 92);
 }
@@ -237,23 +279,25 @@ a:hover { color: #555;}
 }
 
 #url:valid {
-	box-shadow: 0 0 8px rgb(150, 206,180);
+	box-shadow: 0 0 8px rgb(150, 206, 180);
 }
+
 #url:invalid {
 	box-shadow: 0 0 8px rgb(255, 111, 105);
 }
 
-
 /*––––– Animation 1 –––––*/
-#animation1  {
+
+#animation1 {
 	width: 100%;
 	height: 100%;
 	border: none;
 }
 
-
 /*––––––––––––––––––*/
+
 /*––––– Puzzle –––––*/
+
 /*––––––––––––––––––*/
 
 .overlay-shadow {
@@ -262,22 +306,22 @@ a:hover { color: #555;}
 	z-index: 99;
 	height: 100%;
 	width: 100%;
-	background: rgba(0,0,0,0.3);
+	background: rgba(0, 0, 0, 0.3);
 	transition: 500ms;
 }
 
 #overlay {
-   position: absolute;
+	position: absolute;
 	display: none;
 	text-align: center;
-   top: 5%;
+	top: 5%;
 	left: 22%;
 	width: 50%;
 	padding: 3%;
 	border-radius: 15px;
-   box-shadow: 0px 10px 20px rgba(0,0,0,0.4);
-   background-color: #fff;
-   z-index: 99;
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+	background-color: #fff;
+	z-index: 99;
 	cursor: pointer;
 	transition: 500ms;
 }
@@ -290,15 +334,19 @@ a:hover { color: #555;}
 	border: solid 1px #bbb;
 	border-radius: 25px;
 	color: #fff;
-	background: rgb(150, 206,180);
+	background: rgb(150, 206, 180);
 	margin: auto;
 	transition: 200ms;
 }
+
 #overlay-btn:active {
 	box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.3);
 	transition: none;
 }
-#overlay-btn:hover { background: rgb(140, 196, 170);}
+
+#overlay-btn:hover {
+	background: rgb(140, 196, 170);
+}
 
 #puzzle-img {
 	display: none;
@@ -311,7 +359,8 @@ a:hover { color: #555;}
 
 #slots-container {
 	display: none;
-	font-size: 0; /* remove white space */
+	font-size: 0;
+	/* remove white space */
 	position: absolute;
 	bottom: 0;
 	z-index: 90;
@@ -319,7 +368,7 @@ a:hover { color: #555;}
 
 .slot {
 	float: left;
-   background: #fff;
+	background: #fff;
 	opacity: .75;
 }
 
@@ -334,7 +383,8 @@ a:hover { color: #555;}
 	position: absolute;
 	height: 100%;
 	width: 100%;
-   font-size: 0; /* remove white space */
+	font-size: 0;
+	/* remove white space */
 	z-index: 2;
 }
 
@@ -344,32 +394,36 @@ a:hover { color: #555;}
 
 .ui-draggable {
 	cursor: move;
-	box-shadow: 0 5px 15px rgba(0,0,0,.5);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 
 .scale-up-fast {
 	animation: scale-up forwards 250ms;
-} 
-
-.packet {
-		animation: skew infinite 1000ms;
-		margin: 4% 0%;
 }
 
+.packet {
+	animation: skew infinite 1000ms;
+	margin: 4% 0%;
+}
 
 /*––––––––––––––––––––––––––––––––––––*/
+
 /*––––– If screen width  too low –––––*/
+
 /*––––––––––––––––––––––––––––––––––––*/
+
 @media only screen and (max-width: 600px) {
 	* {
 		transition: none;
 		overflow: hidden;
 		visibility: hidden;
 	}
-	#scale, #url, #overlay, #overlay-btn {
+	#scale,
+	#url,
+	#overlay,
+	#overlay-btn {
 		transition: none;
 	}
-
 	#intro::after {
 		height: 100%;
 		width: 100%;
