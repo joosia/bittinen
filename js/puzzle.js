@@ -31,21 +31,21 @@
             simulatedEvent = document.createEvent('MouseEvents');
         // Initialize the simulated mouse event using the touch event's coordinates
         simulatedEvent.initMouseEvent(
-            simulatedType,    // type
-            true,             // bubbles                    
-            true,             // cancelable                 
-            window,           // view                       
-            1,                // detail                     
-            touch.screenX,    // screenX                    
-            touch.screenY,    // screenY                    
-            touch.clientX,    // clientX                    
-            touch.clientY,    // clientY                    
-            false,            // ctrlKey                    
-            false,            // altKey                     
-            false,            // shiftKey                   
-            false,            // metaKey                    
-            0,                // button                     
-            null              // relatedTarget              
+            simulatedType, // type
+            true, // bubbles                    
+            true, // cancelable                 
+            window, // view                       
+            1, // detail                     
+            touch.screenX, // screenX                    
+            touch.screenY, // screenY                    
+            touch.clientX, // clientX                    
+            touch.clientY, // clientY                    
+            false, // ctrlKey                    
+            false, // altKey                     
+            false, // shiftKey                   
+            false, // metaKey                    
+            0, // button                     
+            null // relatedTarget              
         );
 
         // Dispatch the simulated event to the target element
@@ -119,27 +119,28 @@
 | © Esa-Pekka Autio                    |
 | 1.3.2018, version 1.0                |
 *–––––––––––––––––––––––––––––––––––––*/
+var overlay = document.querySelector("#overlay");
+var overlayContainer = document.querySelector(".overlay-container");
 var puzzle = {}
 puzzle.piecesArr = [];
 puzzle.rows = 4;
 puzzle.cols = 5;
-puzzle.h;
-puzzle.hTotal;
-puzzle.w;
-puzzle.wTotal;
+puzzle.pieceHeight;
+puzzle.pieceWidth;
+puzzle.height;
+puzzle.width;
 puzzle.numOfPieces = puzzle.rows * puzzle.cols;
 puzzle.img = document.querySelector("#puzzle-img");
-puzzle.slots = document.querySelector("#slots-container");
-puzzle.pieces = document.querySelector("#pieces-container");
-puzzle.overlay = document.querySelector("#overlay");
+puzzle.slotsContainer = document.querySelector("#slots-container");
+puzzle.piecesContainer = document.querySelector("#pieces-container");
 // puzzle.sound1 = new Howl({src: ['sounds/zig-zag.mp3']});
 // puzzle.sound2 = new Howl({ src: ['sounds/zig-zag.mp3'] });
 
 puzzle.init = function () {
     // Display Elements
     puzzle.img.style.display = "block";
-    puzzle.slots.style.display = "block";
-    puzzle.pieces.style.display = "block";
+    puzzle.slotsContainer.style.display = "block";
+    puzzle.piecesContainer.style.display = "block";
     // Set Size and create pieces and slots
     puzzle.setSize();
     puzzle.createPieces();
@@ -147,13 +148,12 @@ puzzle.init = function () {
     window.addEventListener("resize", puzzle.setSize);
 
     // jQuery UI drag & drop
-    $(".piece").draggable({ 
-        stack: "img", 
-        containment: puzzle.pieces
-    }).on("mousedown mouseup", function(){
+    $(".piece").draggable({
+        stack: "img",
+        containment: puzzle.piecesContainer
+    }).on("mousedown mouseup", function () {
         $(this).toggleClass("scale-up-fast");
     });
-
     $(".slot").droppable({
         accept: function (piece) {
             var dragIndex, dropIndex;
@@ -161,92 +161,126 @@ puzzle.init = function () {
             dropIndex = $(this).attr("data-index");
             // if the data-index matches accept drop
             return dragIndex === dropIndex
-        }, 
-        hoverClass: function(){
+        },
+        hoverClass: function () {
             $(this).toggleClass("slot-hover");
             $(".piece").toggleClass("valid");
         },
         drop: function (event, ui) {
-            ui.draggable.fadeTo("slow", 0.0);
+            ui.draggable.fadeTo("slow", 0.0, remove);
             $(this).fadeTo("slow", 0.0);
             puzzle.numOfPieces--;
+            //console.log(puzzle.numOfPieces);
             if (puzzle.numOfPieces === 0) {
                 puzzle.onComplete();
             }
         }
     });
 }
+
 // Set the sizes
 puzzle.setSize = function () {
-    puzzle.hTotal = puzzle.img.clientHeight;
-    puzzle.wTotal = puzzle.img.clientWidth;
-    puzzle.slots.style.height = puzzle.hTotal + "px";
-    puzzle.slots.style.width = puzzle.wTotal + "px";
-    puzzle.h = puzzle.img.clientHeight / puzzle.rows;
-    puzzle.w = puzzle.img.clientWidth / puzzle.cols;
+    puzzle.height = puzzle.img.clientHeight;
+    puzzle.width = puzzle.img.clientWidth;
+    puzzle.slotsContainer.style.height = puzzle.height + "px";
+    puzzle.slotsContainer.style.width = puzzle.width + "px";
+    puzzle.pieceHeight = puzzle.img.clientHeight / puzzle.rows;
+    puzzle.pieceWidth = puzzle.img.clientWidth / puzzle.cols;
     document.querySelectorAll(".piece").forEach(function (piece) {
-        piece.style.height = puzzle.h + "px";
-        piece.style.width = puzzle.w + "px";
+        piece.style.height = puzzle.pieceHeight + "px";
+        piece.style.width = puzzle.pieceWidth + "px";
     })
     document.querySelectorAll(".slot").forEach(function (slot) {
-        slot.style.height = puzzle.h + "px";
-        slot.style.width = puzzle.w + "px";
+        slot.style.height = puzzle.pieceHeight + "px";
+        slot.style.width = puzzle.pieceWidth + "px";
     })
 }
+
 // Create slots and pieces
 puzzle.createPieces = function () {
-    var offset = 0;
-    var maxLeft = puzzle.wTotal - puzzle.w;
+    var maxLeft = puzzle.width - puzzle.pieceWidth;
     for (var i = 0; i < puzzle.numOfPieces; i++) {
         // Build slot string
-        var slot = '<div style="width:' + puzzle.w + 'px; height:' + puzzle.h + 'px;" class="slot" data-index="' + i + '"></div>';
-        puzzle.slots.insertAdjacentHTML("beforeend", slot);
+        var slot = '<div style="width:' + puzzle.pieceWidth + 'px; height:' + puzzle.pieceHeight + 'px;" class="slot" data-index="' + i + '"></div>';
+        puzzle.slotsContainer.insertAdjacentHTML("beforeend", slot);
         // Build piece string
-        var piece = '<img src="img/pieces/p' + i + '.gif" class="piece" data-index="' + i + '" style="width:' + puzzle.w + 'px;height:' + puzzle.h + 'px; left:' + offset + 'px; top:' + offset + 'px"/>';
+        var piece = '<img src="img/pieces/p' + i + '.gif" class="piece" data-index="' + i + '" width="' + puzzle.pieceWidth + 'px" height="' + puzzle.pieceHeight + 'px"';
         // push to array
         puzzle.piecesArr.push(piece);
-        offset += 5;
     }
-    while (puzzle.piecesArr.length > 0) {
-        var rndIndex = Math.floor(Math.random() * puzzle.piecesArr.length);
-        puzzle.pieces.insertAdjacentHTML("beforeend", puzzle.piecesArr[rndIndex]);
-        // Remove the piece from array
-        puzzle.piecesArr.splice(rndIndex, 1);
+    // Add randomness. First shuffle and then set random positions,
+    // so basically twice the randomness B)
+    puzzle.piecesArr = shuffle(puzzle.piecesArr);
+    puzzle.offsetPieces();
+    puzzle.piecesContainer.insertAdjacentHTML("beforeend", puzzle.piecesArr.join(""));
+    puzzle.piecesArr = remove(); // Delete array
+
+};
+
+puzzle.offsetPieces = function () {
+    var maxX = window.innerWidth - puzzle.pieceWidth;
+    var maxY = window.innerHeight/3 - puzzle.pieceHeight;
+    var offsetX = 0;
+    var offsetY = 0;
+    for(var i = 0; i < puzzle.piecesArr.length; i++) {
+            var rndX = Math.floor(Math.random() * maxX);
+            var rndY = Math.floor(Math.random() * maxY);
+        puzzle.piecesArr[i] += "style='left:" + rndX + "px; top:" + rndY + "px'/>";
     }
 };
-// Removes element from DOM
-remove = function () { $(this).remove(); };
+
 // Show overlay on complete
 puzzle.onComplete = function () {
-    puzzle.slots.remove()
-    puzzle.pieces.remove()
-    document.querySelector(".overlay-shadow").style.opacity = "1";
-    document.querySelector(".overlay-shadow").style.visibility = "visible";
-    puzzle.overlay.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='img/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
-    puzzle.overlay.style.visibility = "visible";
-    puzzle.overlay.style.opacity = "1";
+    // Remove puzzle containers
+    puzzle.slotsContainer.remove()
+    puzzle.piecesContainer.remove()
+    // Enable page scrolling
+    document.querySelector("body").style.overflow = "hidden";
+    document.querySelector("html").style.overflow = "hidden";
+    overlayContainer.style.opacity = "1";
+    overlayContainer.style.visibility = "visible";
+    overlay.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='img/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
     document.querySelector("#overlay-btn").addEventListener("click", function () {
         // Hide pop-up
-        puzzle.overlay.style.opacity = "0";
-        puzzle.overlay.style.visibility = "hidden";
-        document.querySelector(".overlay-shadow").style.opacity = "0";
-        document.querySelector(".overlay-shadow").style.visibility = "hidden";
+        overlayContainer.style.opacity = "0";
+        overlayContainer.style.visibility = "hidden";
     });
 };
 
-// Start Puzzle
+// Removes element from DOM
+function remove() {
+    $(this).remove()
+};
+
+// Shuffle arrays
+function shuffle(arr) {
+    var temp, rndIndex;
+    // loop through array starting from the last index
+    for (var i = arr.length - 1; i >= 0; i--) {
+        var rndIndex = Math.floor(Math.random() * arr.length); // get random index
+        // Switch elements
+        temp = arr[i];
+        arr[i] = arr[rndIndex];
+        arr[rndIndex] = temp;
+    }
+    return arr; // return shuffled arr
+}
+
+// Go to Puzzle
 document.querySelector("#go-to-puzzle").addEventListener("click", function () {
     puzzle.init();
     // Show pop-up
-    document.querySelector(".overlay-shadow").style.display = "block";
-    puzzle.overlay.style.display = "block";
-    puzzle.overlay.innerHTML = "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p></br><div id='overlay-btn'>Aloita</div>";
+    overlayContainer.style.display = "block";
+    overlay.innerHTML = "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p></br><div id='overlay-btn'>Aloita</div>";
     document.querySelector("#overlay-btn").addEventListener("click", function () {
         // Hide pop-up
-        puzzle.overlay.style.opacity = "0";
-        puzzle.overlay.style.visibility = "hidden";
-        document.querySelector(".overlay-shadow").style.opacity = "0";
-        document.querySelector(".overlay-shadow").style.visibility = "hidden";
-
+        overlayContainer.style.opacity = "0";
+        overlayContainer.style.visibility = "hidden";
     });
+    // Disable page scrolling to prevent scroll on puzzle piece drag
+    // 2s delay for not messing up the scroll to top animation
+    window.setTimeout(function(){
+        document.querySelector("body").style.overflow = "hidden";
+        document.querySelector("html").style.overflow = "hidden";
+    }, 2000);
 });

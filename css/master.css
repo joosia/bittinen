@@ -3,11 +3,11 @@
 /*––––––––––––––––––––––––––*/
 @keyframes logo {
 	100% {
-		-ms-transform: translateY(-400%);
-		-moz-transform: translateY(-400%);
-		-o-transform: translateY(-400%);
-		-webkit-transform: translateY(-400%);
-		transform: translateY(-400%);
+		-ms-transform: translateY(-500%);
+		-moz-transform: translateY(-500%);
+		-o-transform: translateY(-500%);
+		-webkit-transform: translateY(-500%);
+		transform: translateY(-500%);
 	}}
 @keyframes browser {
 	50% {
@@ -300,7 +300,7 @@ a:hover {
 
 /*––––––––––––––––––*/
 
-.overlay-shadow {
+.overlay-container {
 	position: absolute;
 	display: none;
 	z-index: 99;
@@ -312,7 +312,6 @@ a:hover {
 
 #overlay {
 	position: absolute;
-	display: none;
 	text-align: center;
 	top: 5%;
 	left: 22%;
@@ -397,6 +396,10 @@ a:hover {
 	box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 
+.piece {
+	position: absolute;
+}
+
 .scale-up-fast {
 	animation: scale-up forwards 250ms;
 }
@@ -406,7 +409,7 @@ a:hover {
 	margin: 4% 0%;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 850px) {
 	#url {
 		font-size: 10px;
 	}
@@ -418,7 +421,7 @@ a:hover {
 
 /*––––––––––––––––––––––––––––––––––––*/
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
 	* {
 		transition: none;
 		overflow: hidden;
