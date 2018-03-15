@@ -119,8 +119,7 @@
 | © Esa-Pekka Autio                    |
 | 1.3.2018, version 1.0                |
 *–––––––––––––––––––––––––––––––––––––*/
-var overlay = document.querySelector("#overlay");
-var overlayContainer = document.querySelector(".overlay-container");
+
 var puzzle = {}
 puzzle.piecesArr = [];
 puzzle.rows = 4;
@@ -271,6 +270,7 @@ document.querySelector("#go-to-puzzle").addEventListener("click", function () {
     puzzle.init();
     // Show pop-up
     overlayContainer.style.display = "block";
+    overlayContainer.style.opacity = "1";
     overlay.innerHTML = "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p></br><div id='overlay-btn'>Aloita</div>";
     document.querySelector("#overlay-btn").addEventListener("click", function () {
         // Hide pop-up

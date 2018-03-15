@@ -279,27 +279,19 @@ a:hover {
 	box-shadow: 0 0 8px rgb(150, 206, 180);
 }
 
-/*––––– Animation 1 –––––*/
-#animation1 {
+#overlay-container {
 	position: absolute;
-	display: none;
-	width: 100%;
-	height: 100%;
-	border: none;
-}
-
-.overlay-container {
-	position: absolute;
-	display: none;
+	visibility: hidden;
 	z-index: 99;
 	height: 100%;
 	width: 100%;
+	opacity: 0;	
 	background: rgba(0, 0, 0, 0.3);
 	transition: 500ms;
 }
 
 #overlay {
-	position: absolute;
+	position: fixed;
 	text-align: center;
 	top: 5%;
 	left: 22%;
@@ -328,7 +320,7 @@ a:hover {
 
 #overlay-btn:active {
 	box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.3);
-	transition: none;
+	transition: 50ms;
 }
 
 #overlay-btn:hover {
