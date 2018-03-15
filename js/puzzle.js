@@ -204,7 +204,7 @@ puzzle.createPieces = function () {
         var slot = '<div style="width:' + puzzle.pieceWidth + 'px; height:' + puzzle.pieceHeight + 'px;" class="slot" data-index="' + i + '"></div>';
         puzzle.slotsContainer.insertAdjacentHTML("beforeend", slot);
         // Build piece string
-        var piece = '<img src="img/pieces/p' + i + '.gif" class="piece" data-index="' + i + '" width="' + puzzle.pieceWidth + 'px" height="' + puzzle.pieceHeight + 'px"';
+        var piece = '<img src="images/pieces/p' + i + '.gif" class="piece" data-index="' + i + '" width="' + puzzle.pieceWidth + 'px" height="' + puzzle.pieceHeight + 'px"';
         // push to array
         puzzle.piecesArr.push(piece);
     }
@@ -239,7 +239,7 @@ puzzle.onComplete = function () {
     document.querySelector("html").style.overflow = "hidden";
     overlayContainer.style.opacity = "1";
     overlayContainer.style.visibility = "visible";
-    overlay.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='img/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
+    overlay.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
     document.querySelector("#overlay-btn").addEventListener("click", function () {
         // Hide pop-up
         overlayContainer.style.opacity = "0";

@@ -11,12 +11,16 @@
 	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Noto+Sans" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/master.css"/>
+	<!-- Animate CC and Create.js scripts-->
+	<script src="js/create.js"></script>
+	<script src="animations/factoryAnimation.js"></script>
+	<!-- <script src="animations/factoryAnimation.js"></script> -->
 </head>
 
 <body>
 	<!-- Intro -->
 	<div id="intro" class="full-screen">
-		<img id="logo" class="fade-in select-disable" draggable="false" ondragstart="return false;" src="img/logo.svg" alt="logo"/>
+		<img id="logo" class="fade-in select-disable" draggable="false" ondragstart="return false;" src="images/logo.svg" alt="logo"/>
 		<div class="overlay-container">
 			<div id="overlay">
 				<h1>Mitä tapahtuu, kun lataat nettisivun?</h1>
@@ -32,15 +36,18 @@
 				<div id="form" autocomplete="url">
 					<input id="url" class="fade-in" type="url" placeholder="https://" value="https://"/>
 				</div>
-				<img id="browser" class="select-disable" src="img/browser-bittinen.svg" draggable="false" ondragstart="return false;"/>
+				<img id="browser" class="select-disable" src="images/browser-bittinen.svg" draggable="false" ondragstart="return false;"/>
 			</div>
-			<img id="puzzle-img" src="img/puzzle-cat.png"/>
+			<img id="puzzle-img" src="images/puzzle-cat.png"/>
 			<div id=slots-container></div>
 		</div>
 	</div>
 
 	<!-- First Animation -->
 	<div id="first" class="full-screen">
+			<div id="factory-animation" style="width:1279px; height:720px">
+				<canvas id="canvas" width="1279" height="720" style="position: absolute; display: none;"></canvas>
+			</div>
 	</div>
 
 	<!-- Screen Template -->

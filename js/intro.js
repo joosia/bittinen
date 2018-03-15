@@ -36,12 +36,15 @@ $(document).ready(function () {
 		if (e.which === 13) {
 			url.blur();
 			// Add first animation
-			$("#first").append('<iframe id="animation1" src="animations/animation1.html" frameborder="none"></iframe>');
+			factoryAnimation()
+			//$("#first").append('<iframe id="animation1" src="animations/animation1.html" frameborder="none"></iframe>');
+			$("#animation1").css("display", "block");
 			// Animate scroll to #first
 			$('html, body').animate({
 				scrollTop: $($(first)).offset().top
 			}, 700);
 			form.remove();
+
 		}
 	});
 
@@ -50,7 +53,6 @@ $(document).ready(function () {
 	/*––––––––––––––––––*/
 	/*––––– Other  –––––*/
 	/*––––––––––––––––––*/
-	
 	$('a').on("click", function () { // jQuery: Smooth Scroll to anchor-link
 		$('html, body').animate({
 			scrollTop: $($(this).attr('href')).offset().top
