@@ -1,98 +1,117 @@
+var overlayContainer = $("#overlay-container");
+var overlay = $("#overlay");
+var overlayText = $("#overlay-text");
+var overlayBtn = $("#overlay-btn>a");
+var overlayTexts = {
+	factory: "<p>Internetissä data kulkee lukuisten reitittimien kautta, jotka nimensä mukaisesti ohjaavat liikennettä.</p>",
+	underwater: "<p>Liikenne kulkee myös merten pohjassa kestävien kaapeleiden sisällä.</p>",
+
+}
 $(document).ready(function () {
+
+	/*–––––––––––––––––––––––––––*/
+	/*––––– Global Scripts  –––––*/
+	/*–––––––––––––––––––––––––––*/
+
+	overlayBtn.on("click", function () {
+
+		switch ($(this).attr("href")) {
+
+			case "#intro":
+				console.log("intro");
+				toggleOverlay();
+				break;
+
+			case "#third":
+				toggleOverlay(); // hide
+				console.log("underwater");
+				window.setTimeout(toggleOverlay, 2000); // show
+				$("body").append('<script src="animations/underwaterAnimation.js"></script>');
+				underwaterAnimation();
+				$("#animateScript").remove();
+				$("#factory-animation").remove();
+				window.setTimeout(function () {
+					overlayBtn.attr("href", "#fourth");
+					overlayText.html(overlayTexts.underwater);
+				}, 700)
+				break;
+
+			case "#fourth":
+				toggleOverlay(); //hide
+				break;
+
+			default:
+			toggleOverlay();
+				break;
+
+		}
+	});
+
+	// Animate scroll to anchor-link
+	$('a').on("click", function () { // select all anchors
+		$('html, body').animate({ // select html and body for animating
+			scrollTop: $($(this).attr('href')).offset().top // scroll to anchor-link href
+		}, 800);
+		return false;
+	});
+
+
 	/*–––––––––––––––––––*/
 	/*––––– Intro   –––––*/
 	/*–––––––––––––––––––*/
-	var browser = $("#browser");
+
 	var form = $("#form");
 	var url = $("#url");
 	var scale = $("#scale");
-	
-	// Remove logo from dom after animation is done
-	function removeLogo() {
-		var timeoutID;
-		timeoutID = window.setTimeout(function(){
-				$("#logo").remove();
-		}, 5000);
-	};
-	removeLogo();
 
-	//window.setTimeout(toggleOverlay, 5000);
+	// Remove logo after animation is done and show overlay
+	window.setTimeout(function () {
+		$("#logo").remove();
+		toggleOverlay();
+	}, 4000);
 
 	// Scale up browser container
-	form.click(function(){
+	form.click(function () {
 		url.focus();
 	})
 	url.on({
-		focus: function() {
+		focus: function () {
 			scale.addClass("scale-up");
 		},
-		blur: function() {
+		blur: function () {
 			scale.removeClass("scale-up");
 		}
 	});
 
 	// Function on url-submit
-	$("input").on("keypress", function(e){
+	$("input").on("keypress", function (e) {
 		if (e.which === 13) {
 			url.blur();
-			// Add first animation
-			factoryAnimation()
-			overlayContainer.style.visibility = "visible";
-			overlayContainer.style.opacity = "1";
-			overlay.innerHTML = "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p></br><div id='overlay-btn'>Jatka</div>";
+			window.setTimeout(toggleOverlay, 2000);
 			// Animate scroll to #first
 			$('html, body').animate({
 				scrollTop: $($(first)).offset().top
-			}, 700);
+			}, 800);
+			factoryAnimation() // Run factory animation
+			overlayText.html(overlayTexts.factory);
+			overlayBtn.text("Jatka");
+			overlayBtn.attr("href", "#third"); // Switch href
 			form.remove();
-
 		}
 	});
 
-
-
-	/*––––––––––––––––––*/
-	/*––––– Other  –––––*/
-	/*––––––––––––––––––*/
-	$('a').on("click", function () { // jQuery: Smooth Scroll to anchor-link
-		$('html, body').animate({
-			scrollTop: $($(this).attr('href')).offset().top
-		}, 700);
-		return false;
-	});
-	
-	$("#overlay-btn").on("click", function(){
-		toggleOverlay();
-	});
-
-
-	// $(document).keydown(function (event) { 	// jQuery: Smooth Scroll on arrow keys
-	// 	switch (event.which) {
-	// 		case 38: // Arrow Up
-	// 			$("html, body").animate({
-	// 				scrollTop: "-=738",
-	// 			}, 700);
-	// 			break;
-	// 		case 40: // Arrow Down
-	// 			$("html, body").animate({
-	// 				scrollTop: "+=738",
-	// 			}, 700);
-	// 			break;
-	// 		default: return; // Exit this handler for other keys
-	// 	}
-	// 	event.preventDefault();
-	// });
 }); // $(document).ready(function(){});
 
-
-var overlay = document.querySelector("#overlay");
-var overlayContainer = document.querySelector("#overlay-container");
+// Toggle overlay visibility
 function toggleOverlay() {
-	if (overlayContainer.style.opacity == 0) {
-		overlayContainer.style.opacity = "1";
-		overlayContainer.style.visibility = "visible";
-	} else {
-		overlayContainer.style.opacity = "0";
-		overlayContainer.style.visibility = "hidden";
-	}
+	overlayContainer.fadeToggle("normal", function () {
+		// Prevent overlay hide on click. The overlay can only
+		// be closed by clicking container area or overlay-btn
+		// overlay.click(function (e) {
+		// 	e.stopPropagation()
+		// });
+		// $(this).click(function () {
+		// 	toggleOverlay()
+		// });
+	})
 }

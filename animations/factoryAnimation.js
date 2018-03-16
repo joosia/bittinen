@@ -4644,7 +4644,7 @@ var createjs, AdobeAn;
 var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
 
 function factoryAnimation() {
-	canvas = document.getElementById("canvas");
+	canvas = document.getElementById("canvas1");
 	anim_container = document.getElementById("factory-animation");
 	var comp = AdobeAn.getComposition("029D1531BEE7404DABC85B40615AE6CD");
 	var lib = comp.getLibrary();

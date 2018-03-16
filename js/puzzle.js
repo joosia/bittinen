@@ -119,7 +119,6 @@
 | © Esa-Pekka Autio                    |
 | 1.3.2018, version 1.0                |
 *–––––––––––––––––––––––––––––––––––––*/
-
 var puzzle = {}
 puzzle.piecesArr = [];
 puzzle.rows = 4;
@@ -236,14 +235,8 @@ puzzle.onComplete = function () {
     // Enable page scrolling
     document.querySelector("body").style.overflow = "hidden";
     document.querySelector("html").style.overflow = "hidden";
-    overlayContainer.style.opacity = "1";
-    overlayContainer.style.visibility = "visible";
-    overlay.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
-    document.querySelector("#overlay-btn").addEventListener("click", function () {
-        // Hide pop-up
-        overlayContainer.style.opacity = "0";
-        overlayContainer.style.visibility = "hidden";
-    });
+    overlayText.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
+    overlayContainer.fadeIn("normal");
 };
 
 // Removes element from DOM
@@ -267,16 +260,12 @@ function shuffle(arr) {
 
 // Go to Puzzle
 document.querySelector("#go-to-puzzle").addEventListener("click", function () {
+    $("#underwater-animation").remove();
     puzzle.init();
     // Show pop-up
-    overlayContainer.style.display = "block";
-    overlayContainer.style.opacity = "1";
-    overlay.innerHTML = "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p></br><div id='overlay-btn'>Aloita</div>";
-    document.querySelector("#overlay-btn").addEventListener("click", function () {
-        // Hide pop-up
-        overlayContainer.style.opacity = "0";
-        overlayContainer.style.visibility = "hidden";
-    });
+    overlayText.html("<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p>");
+    overlayBtn.attr("href", "#intro");
+    toggleOverlay();
     // Disable page scrolling to prevent scroll on puzzle piece drag
     // 2s delay for not messing up the scroll to top animation
     window.setTimeout(function(){

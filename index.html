@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fi">
+
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,24 +11,29 @@
 	<!--FONTS: Fredoka One % Noto Sans -->
 	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Noto+Sans" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="css/master.css"/>
+	<link rel="stylesheet" type="text/css" href="css/master.css" />
 	<!-- Animate CC and Create.js scripts-->
 	<script src="js/create.js"></script>
-	<script src="animations/factoryAnimation.js"></script>
-	<!-- <script src="animations/factoryAnimation.js"></script> -->
+	<script id="animateScript" src="animations/factoryAnimation.js"></script>
 </head>
 
 <body>
-	<!-- Intro -->
-	<div id="intro" class="full-screen">
-		<img id="logo" class="fade-in select-disable" draggable="false" ondragstart="return false;" src="images/logo.svg" alt="logo"/>
-		<div id="overlay-container">
-			<div id="overlay">
+	<div id="overlay-container">
+		<div id="overlay">
+			<div id="overlay-text">
 				<h1>Mitä tapahtuu, kun lataat nettisivun?</h1>
-				<p>Kirjoita osoite alla näkyvään selaimeen ja lähde seuraamaan paketin matkaa. Käytä muotoa www.osoite.fi. Kokeile myös, mitä käy, jos kirjoitat osoitteen väärässä muodossa.</p>
-				<div id='overlay-btn'>Aloita</div>
+				<p>Kirjoita osoite alla näkyvään selaimeen ja lähde seuraamaan paketin matkaa. Käytä muotoa www.osoite.fi. Kokeile myös,
+					mitä käy, jos kirjoitat osoitteen väärässä muodossa.</p>
+			</div>
+			<div id='overlay-btn'>
+				<a href="#intro">Aloita</a>
 			</div>
 		</div>
+	</div>
+	<!-- Intro -->
+	<div id="intro" class="full-screen">
+		<img id="logo" class="fade-in select-disable" draggable="false" ondragstart="return false;" src="images/logo.svg" alt=""
+		/>
 		<!-- Puzzle -->
 		<div id="no-scroll">
 			<div id="pieces-container" class="select-disable"></div>
@@ -35,36 +41,37 @@
 		<div id="browser-container">
 			<div id="scale">
 				<div id="form" autocomplete="url">
-					<input id="url" class="fade-in" type="url" placeholder="https://" value="https://"/>
+					<input id="url" class="fade-in" type="url" placeholder="https://" value="https://" />
 				</div>
-				<img id="browser" class="select-disable" src="images/browser-bittinen.svg" draggable="false" ondragstart="return false;"/>
+				<img id="browser" class="select-disable" src="images/browser-bittinen.svg" draggable="false" ondragstart="return false;"
+				/>
 			</div>
-			<img id="puzzle-img" src="images/puzzle-cat.png"/>
+			<img id="puzzle-img" src="images/puzzle-cat.png" />
 			<div id=slots-container></div>
 		</div>
 	</div>
 
-	<!-- First Animation -->
+	<!-- Factory Animation -->
 	<div id="first" class="full-screen">
-			<div id="factory-animation" style="width:1279px; height:720px">
-				<canvas id="canvas" width="1279" height="720" style="position: absolute; display: none;"></canvas>
-			</div>
+		<div id="factory-animation" style="width:1279px; height:720px">
+			<canvas id="canvas1" width="1279" height="720" style="position: absolute; display: none;"></canvas>
+		</div>
+	</div>
+
+	<!-- Underwater Animation -->
+	<div id="third" class="full-screen">
+		<div id="underwater-animation" style="width:1279px; height:720px">
+			<canvas id="canvas2" width="1279" height="720" style="position: absolute;;"></canvas>
+		</div>
 	</div>
 
 	<!-- Screen Template -->
-	<div id="second" class="full-screen">
+	<div id="fourth" class="full-screen">
 		<div class="content">
-			<h1>Heading 5</h1>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-				irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</p>
 		</div>
 		<div class="bottom">
 			<a href="#intro">
-<span class="arrow-up" id="go-to-puzzle">⌃</span>
+				<span class="arrow-up" id="go-to-puzzle">⌃</span>
 			</a>
 			<h4>Go to Puzzle</h4>
 		</div>
@@ -78,4 +85,5 @@
 	<script src="js/intro.js"></script>
 	<script src="js/puzzle.js"></script>
 </body>
+
 </html>
