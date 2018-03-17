@@ -379,6 +379,18 @@ a:hover {
   	top: -100%;
   	bottom: -100%;
 }
+#factory {
+	background: url("/Users/joosia/Developer/Repos/bittinen/images/factory.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+#underwater {
+	background: url("/Users/joosia/Developer/Repos/bittinen/images/underwater.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
 
 /*––––––––––––––––––––––––––––––––*/
 /*––––– Small screen settings–––––*/

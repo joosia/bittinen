@@ -34,8 +34,6 @@ overlay.show = function(){
 					overlay.content.html(overlay.html.second);
 					break;
 				case "#underwater":
-					$("#factory-animation").remove();
-					$("script[src='animations/factoryAnimation.js']").remove();
 					overlay.content.html(overlay.html.underwater);
 					break;
 				case "#server":
@@ -43,8 +41,11 @@ overlay.show = function(){
 					$("script[src='animations/underwaterAnimation.js']").remove();
 					$("#underwater-animation").remove();
 					$("script[src='js/create.js']").remove();
+					$("#factory-animation").remove();
+					$("script[src='animations/factoryAnimation.js']").remove();
 					break;
 				case "#puzzle":
+					overlay.container.css("background", "rgba(0, 0, 0, 0.3)");
 					overlay.content.html(overlay.html.puzzle);
 					root.css("overflow", "hidden"); // disable page scroll
 					break;
@@ -56,16 +57,24 @@ overlay.show = function(){
 					break;
 			}
 			overlay.container.fadeIn("normal");
-		}, 2000);
+		}, 1500);
+	}
+	// Start underwater animation
+	if (overlay.link.attr("href") == "#underwater" ){
+		underwaterAnimation();
 	}
 }
 
 function animateScroll() {
-	// select html and body for animating
-	root.animate({
+	root.animate({	// select html and body for animating
 		scrollTop: $($(overlay.link).attr('href')).offset().top // scroll to anchor-link href
-	}, 800);
+	}, 1000);
 	return false;
+}
+// Clear animations
+function clearAnimation() {
+	stage.removeAllChildren();
+	stage.update();
 }
 
 $(document).ready(function () {
@@ -80,13 +89,15 @@ $(document).ready(function () {
 		overlay.container.fadeOut("fast");
 		switch (overlay.link.attr("href")) {
 			case "#factory":
+				clearAnimation(); // Clear animation for better performance
+				// Add underwater animation script
 				$("body").append('<script src="animations/underwaterAnimation.js"></script>');
-				underwaterAnimation();
 				overlay.link.attr("href", "#underwater");
 				animateScroll();
 				overlay.show();
 				break;
 			case "#underwater":
+				clearAnimation();
 				overlay.link.attr("href", "#server");
 				animateScroll();
 				overlay.show();

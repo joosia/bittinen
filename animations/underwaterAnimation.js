@@ -4676,6 +4676,7 @@ function handleComplete(evt, comp) {
 	exportRoot = new lib.vesi_anim1();
 	stage = new lib.Stage(canvas);
 	stage.addChild(exportRoot);
+
 	//Registers the "tick" event listener.
 	fnStartAnimation = function () {
 		createjs.Ticker.setFPS(lib.properties.fps);
