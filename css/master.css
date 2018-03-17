@@ -403,6 +403,7 @@ a:hover {
 		top: 2%;
 		left:2%;
 		width: 90%;
+		max-height: 100%;
 		padding: 3%;
 	}
 }
