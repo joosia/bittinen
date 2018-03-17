@@ -1,58 +1,110 @@
-var overlayContainer = $("#overlay-container");
-var overlay = $("#overlay");
-var overlayText = $("#overlay-text");
-var overlayBtn = $("#overlay-btn>a");
-var overlayTexts = {
-	factory: "<p>Internetissä data kulkee lukuisten reitittimien kautta, jotka nimensä mukaisesti ohjaavat liikennettä.</p>",
-	underwater: "<p>Liikenne kulkee myös merten pohjassa kestävien kaapeleiden sisällä.</p>",
+var root = $('html, body'); 
 
+/*–––––––––––––––––––––––––––––*/
+/*––––– Overlay Settings  –––––*/
+/*–––––––––––––––––––––––––––––*/
+var overlay = {}
+overlay.container = $("#overlay-container");
+overlay.content = $("#overlay-text-content");
+overlay.btn = $("#overlay-btn");
+overlay.link = $("#btn-link");
+overlay.html = {
+	factory: "<p>Internetissä data kulkee lukuisten reitittimien kautta, jotka nimensä mukaisesti ohjaavat liikennettä.</p>",
+	dns:"", // dns screen
+	traffic:"", // traffic control screen
+	underwater: "<p>Liikenne kulkee myös merten pohjassa kestävien kaapeleiden sisällä.</p>",
+	server:"<h1>Perillä ollaan!</h1><p>Nettisivut sijaitsevat yhdellä tai useammalle palvelinkoneella.</p>",
+	puzzle: "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p>",
+	puzzleComplete: "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p> <img src='images/paketti.png' class='packet'/>",
 }
+overlay.show = function(){
+	// Add delay if not on intro or puzzle screen
+	if (overlay.link.attr("href") == "#intro" || overlay.link.attr("href") == "#puzzleComplete") {
+		overlay.container.fadeIn("normal");
+	} else {
+		setTimeout(function(){
+			switch (overlay.link.attr("href")) {
+				case "#factory":
+					$("#intro").attr("id", "puzzle"); // Change the id for later use
+					overlay.container.css("background", "none"); // remove overlay shadow
+					overlay.content.html(overlay.html.factory);
+					overlay.link.text("Jatka");
+					break;
+				case "#second":
+					overlay.content.html(overlay.html.second);
+					break;
+				case "#underwater":
+					$("#factory-animation").remove();
+					$("script[src='animations/factoryAnimation.js']").remove();
+					overlay.content.html(overlay.html.underwater);
+					break;
+				case "#server":
+					overlay.content.html(overlay.html.server);
+					$("script[src='animations/underwaterAnimation.js']").remove();
+					$("#underwater-animation").remove();
+					$("script[src='js/create.js']").remove();
+					break;
+				case "#puzzle":
+					overlay.content.html(overlay.html.puzzle);
+					root.css("overflow", "hidden"); // disable page scroll
+					break;
+				case "#puzzleComplete":
+					overlay.content.html(overlay.html.puzzleComplete);
+					root.css("overflow", "auto"); // enable scroll
+					break;
+				default:
+					break;
+			}
+			overlay.container.fadeIn("normal");
+		}, 2000);
+	}
+}
+
+function animateScroll() {
+	// select html and body for animating
+	root.animate({
+		scrollTop: $($(overlay.link).attr('href')).offset().top // scroll to anchor-link href
+	}, 800);
+	return false;
+}
+
 $(document).ready(function () {
 
 	/*–––––––––––––––––––––––––––*/
 	/*––––– Global Scripts  –––––*/
 	/*–––––––––––––––––––––––––––*/
 
-	overlayBtn.on("click", function () {
-
-		switch ($(this).attr("href")) {
-
-			case "#intro":
-				console.log("intro");
-				toggleOverlay();
-				break;
-
-			case "#third":
-				toggleOverlay(); // hide
-				console.log("underwater");
-				window.setTimeout(toggleOverlay, 2000); // show
+	/* Overlay button */
+	overlay.btn.on("click", function (e) {
+		e.preventDefault();
+		overlay.container.fadeOut("fast");
+		switch (overlay.link.attr("href")) {
+			case "#factory":
 				$("body").append('<script src="animations/underwaterAnimation.js"></script>');
 				underwaterAnimation();
-				$("#animateScript").remove();
-				$("#factory-animation").remove();
-				window.setTimeout(function () {
-					overlayBtn.attr("href", "#fourth");
-					overlayText.html(overlayTexts.underwater);
-				}, 700)
+				overlay.link.attr("href", "#underwater");
+				animateScroll();
+				overlay.show();
 				break;
-
-			case "#fourth":
-				toggleOverlay(); //hide
+			case "#underwater":
+				overlay.link.attr("href", "#server");
+				animateScroll();
+				overlay.show();
 				break;
-
+			case "#server":
+				overlay.link.attr("href", "#puzzle"); // switch href
+				animateScroll();
+				overlay.show();
+				puzzle.init(); // Start puzzle
+				break;
+			case "#puzzle":
+				overlay.link.attr("href", "#puzzleComplete");
+				break;
+			case "#puzzleComplete":
+				break;
 			default:
-			toggleOverlay();
 				break;
-
 		}
-	});
-
-	// Animate scroll to anchor-link
-	$('a').on("click", function () { // select all anchors
-		$('html, body').animate({ // select html and body for animating
-			scrollTop: $($(this).attr('href')).offset().top // scroll to anchor-link href
-		}, 800);
-		return false;
 	});
 
 
@@ -65,11 +117,11 @@ $(document).ready(function () {
 	var scale = $("#scale");
 
 	// Remove logo after animation is done and show overlay
-	window.setTimeout(function () {
+	setTimeout(function () {
 		$("#logo").remove();
-		toggleOverlay();
+		//toggleOverlay();
+		overlay.show();
 	}, 4000);
-
 	// Scale up browser container
 	form.click(function () {
 		url.focus();
@@ -82,36 +134,17 @@ $(document).ready(function () {
 			scale.removeClass("scale-up");
 		}
 	});
-
 	// Function on url-submit
 	$("input").on("keypress", function (e) {
 		if (e.which === 13) {
 			url.blur();
-			window.setTimeout(toggleOverlay, 2000);
-			// Animate scroll to #first
-			$('html, body').animate({
-				scrollTop: $($(first)).offset().top
-			}, 800);
+			overlay.link.attr("href", "#factory"); // switch href
 			factoryAnimation() // Run factory animation
-			overlayText.html(overlayTexts.factory);
-			overlayBtn.text("Jatka");
-			overlayBtn.attr("href", "#third"); // Switch href
+			// Animate scroll to #factory
+			animateScroll();
+			overlay.show();
 			form.remove();
 		}
 	});
 
 }); // $(document).ready(function(){});
-
-// Toggle overlay visibility
-function toggleOverlay() {
-	overlayContainer.fadeToggle("normal", function () {
-		// Prevent overlay hide on click. The overlay can only
-		// be closed by clicking container area or overlay-btn
-		// overlay.click(function (e) {
-		// 	e.stopPropagation()
-		// });
-		// $(this).click(function () {
-		// 	toggleOverlay()
-		// });
-	})
-}

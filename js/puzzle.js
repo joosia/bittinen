@@ -135,6 +135,7 @@ puzzle.piecesContainer = document.querySelector("#pieces-container");
 // puzzle.sound2 = new Howl({ src: ['sounds/zig-zag.mp3'] });
 
 puzzle.init = function () {
+
     // Display Elements
     puzzle.img.style.display = "block";
     puzzle.slotsContainer.style.display = "block";
@@ -232,14 +233,12 @@ puzzle.onComplete = function () {
     // Remove puzzle containers
     puzzle.slotsContainer.remove()
     puzzle.piecesContainer.remove()
-    // Enable page scrolling
-    document.querySelector("body").style.overflow = "hidden";
-    document.querySelector("html").style.overflow = "hidden";
-    overlayText.innerHTML = "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/><div id='overlay-btn'>Seuraava</div>";
-    overlayContainer.fadeIn("normal");
+    overlay.content.html(overlay.html.puzzleComplete);
+    overlay.show();
 };
 
 // Removes element from DOM
+// There already exists .remove() method, but this is for removing dropped pieces
 function remove() {
     $(this).remove()
 };
@@ -257,19 +256,3 @@ function shuffle(arr) {
     }
     return arr; // return shuffled arr
 }
-
-// Go to Puzzle
-document.querySelector("#go-to-puzzle").addEventListener("click", function () {
-    $("#underwater-animation").remove();
-    puzzle.init();
-    // Show pop-up
-    overlayText.html("<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p>");
-    overlayBtn.attr("href", "#intro");
-    toggleOverlay();
-    // Disable page scrolling to prevent scroll on puzzle piece drag
-    // 2s delay for not messing up the scroll to top animation
-    window.setTimeout(function(){
-        document.querySelector("body").style.overflow = "hidden";
-        document.querySelector("html").style.overflow = "hidden";
-    }, 2000);
-});

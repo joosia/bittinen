@@ -14,19 +14,20 @@
 	<link rel="stylesheet" type="text/css" href="css/master.css" />
 	<!-- Animate CC and Create.js scripts-->
 	<script src="js/create.js"></script>
-	<script id="animateScript" src="animations/factoryAnimation.js"></script>
+	<script src="animations/factoryAnimation.js"></script>
 </head>
 
 <body>
+	<div id="warning"><h2>Resoluutio liian pieni. Suurenna selainikkunaa tai käännä puhelinta.</h2></div>
 	<div id="overlay-container">
 		<div id="overlay">
-			<div id="overlay-text">
+			<div id="overlay-text-content">
 				<h1>Mitä tapahtuu, kun lataat nettisivun?</h1>
 				<p>Kirjoita osoite alla näkyvään selaimeen ja lähde seuraamaan paketin matkaa. Käytä muotoa www.osoite.fi. Kokeile myös,
 					mitä käy, jos kirjoitat osoitteen väärässä muodossa.</p>
 			</div>
 			<div id='overlay-btn'>
-				<a href="#intro">Aloita</a>
+				<a id="btn-link" href="#intro">Aloita</a>
 			</div>
 		</div>
 	</div>
@@ -52,28 +53,22 @@
 	</div>
 
 	<!-- Factory Animation -->
-	<div id="first" class="full-screen">
+	<div id="factory" class="full-screen">
 		<div id="factory-animation" style="width:1279px; height:720px">
 			<canvas id="canvas1" width="1279" height="720" style="position: absolute; display: none;"></canvas>
 		</div>
 	</div>
 
 	<!-- Underwater Animation -->
-	<div id="third" class="full-screen">
+	<div id="underwater" class="full-screen">
 		<div id="underwater-animation" style="width:1279px; height:720px">
 			<canvas id="canvas2" width="1279" height="720" style="position: absolute;;"></canvas>
 		</div>
 	</div>
 
 	<!-- Screen Template -->
-	<div id="fourth" class="full-screen">
+	<div id="server" class="full-screen">
 		<div class="content">
-		</div>
-		<div class="bottom">
-			<a href="#intro">
-				<span class="arrow-up" id="go-to-puzzle">⌃</span>
-			</a>
-			<h4>Go to Puzzle</h4>
 		</div>
 	</div>
 	<!-- Howler.js for sounds -->

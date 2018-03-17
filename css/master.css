@@ -84,8 +84,7 @@
 /*––––––––––––––––––––––*/
 /*––––– Global CSS –––––*/
 /*––––––––––––––––––––––*/
-html,
-body {
+html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -94,23 +93,15 @@ body {
 	font-family: 'Noto Sans', sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1,h2,h3,h4 {
 	font-family: 'Fredoka One', sans-serif;
 	text-align: center;
-}
-
-iframe {
-	overflow: hidden;
 }
 
 a {
 	text-decoration: none;
 	color: #333;
 }
-
 a:hover {
 	color: #555;
 }
@@ -143,40 +134,74 @@ a:hover {
 	position: relative;
 }
 
-.bottom {
-	width: 20%;
+#warning {
+	top: 0;
+	left: 0;
+	position: fixed;
+	display: none;
+}
+
+#overlay-container {
+	position: fixed;
+	display: none;
+	z-index: 99;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+#overlay {
+	position: fixed;
 	text-align: center;
-	font-weight: bold;
-	position: absolute;
-	bottom: 2%;
-	right: 40%;
-	left: 40%;
+	top: 5%;
+	left: 22%;
+	width: 50%;
+	padding: 3%;
+	border-radius: 15px;
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+	background-color: #fff;
+	z-index: 99;
 }
 
-.bottom h4 {
-	margin: 0 0 20px 0;
+#overlay-btn {
+	display: block;
+	cursor: pointer;
+	text-align: center;
+	width: 20%;
+	padding: 10px;
+	border: solid 1px #bbb;
+	border-radius: 25px;
+	background: rgb(150, 206, 180);
+	margin: auto;
+	transition: 200ms;
 }
 
-.arrow-up {
-	font-size: 200%;
-	font-weight: bold;
+#overlay-btn a {
+	color: #fff;
 }
 
-#first {
+#overlay-btn:active {
+	box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.3);
+	transition: 50ms;
+}
+
+#overlay-btn:hover {
+	background: rgb(140, 196, 170);
+}
+
+#factory {
 	background: #96CEB4;
-	background-position: center;
-	background-size: cover;
 }
 
 #second {
 	background: #FFEEAD;
 }
 
- #third {
+ #underwater {
    background: #FF6F69;
 }
 
-#fourth {
+#server {
    background: #FFCC5C;
 }
 
@@ -188,7 +213,7 @@ a:hover {
 /*–––––––––––––––––––––*/
 /*––––– Intro CSS –––––*/
 /*–––––––––––––––––––––*/
-#intro {
+#intro, #puzzle {
 	animation-name: bgColor;
 	animation-duration: 10s;
 	animation-iteration-count: infinite;
@@ -279,53 +304,6 @@ a:hover {
 	box-shadow: 0 0 8px rgb(150, 206, 180);
 }
 
-#overlay-container {
-	position: absolute;
-	display: none;
-	z-index: 99;
-	height: 100%;
-	width: 100%;
-	background: rgba(0, 0, 0, 0.3);
-
-}
-
-#overlay {
-	position: fixed;
-	text-align: center;
-	top: 5%;
-	left: 22%;
-	width: 50%;
-	padding: 3%;
-	border-radius: 15px;
-	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
-	background-color: #fff;
-	z-index: 99;
-}
-
-#overlay-btn {
-	display: block;
-	cursor: pointer;
-	text-align: center;
-	width: 20%;
-	padding: 10px;
-	border: solid 1px #bbb;
-	border-radius: 25px;
-	background: rgb(150, 206, 180);
-	margin: auto;
-	transition: 200ms;
-}
-#overlay-btn>a{
-	color: #fff;
-}
-#overlay-btn:active {
-	box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.3);
-	transition: 50ms;
-}
-
-#overlay-btn:hover {
-	background: rgb(140, 196, 170);
-}
-
 /*––––––––––––––––––*/
 /*––––– Puzzle –––––*/
 /*––––––––––––––––––*/
@@ -410,37 +388,28 @@ a:hover {
 		font-size: 10px;
 	}
 	#overlay {
-		left: 12%;
-		width: 70%;
+		top: 2%;
+		left:2%;
+		width: 90%;
 		padding: 3%;
 	}
 }
 @media only screen and (max-width: 500px) {
 	* {
-		transition: none;
-		overflow: hidden;
-		visibility: hidden;
+		transition: none !important;
 	}
-	#scale,
-	#url,
-	#overlay,
-	#overlay-btn {
-		transition: none;
-	}
-	#intro::after {
-		height: 100%;
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		visibility: hidden;
-		font-family: 'Fredoka One', cursive;
-		font-size: 20px;
-		visibility: visible;
-		content: "Käännä puhelinta pelataksesi";
+
+	#warning {
 		animation-name: bgColor;
 		animation-duration: 10s;
 		animation-iteration-count: infinite;
 		animation-fill-mode: forwards;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0 5%;
+		z-index: 100;
+		width: 90%;
+		height: 100%;
 	}
 }
