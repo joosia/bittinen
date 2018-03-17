@@ -381,13 +381,13 @@ a:hover {
   	bottom: -100%;
 }
 #factory {
-	background: url("../images/factory.png");
+	background: url("/images/factory.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 }
 #underwater {
-	background: url("../images/underwater.png");
+	background: url("/images/underwater.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
