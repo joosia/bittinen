@@ -15,7 +15,7 @@ overlay.html = {
 	underwater: "<p>Liikenne kulkee myös merten pohjassa kestävien kaapeleiden sisällä.</p>",
 	server:"<h1>Perillä ollaan!</h1><p>Nettisivut sijaitsevat yhdellä tai useammalle palvelinkoneella.</p>",
 	puzzle: "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p>",
-	puzzleComplete: "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p> <img src='images/paketti.png' class='packet'/>",
+	puzzleComplete: "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/>",
 }
 overlay.show = function(){
 	// Add delay if not on intro or puzzle screen
@@ -57,7 +57,7 @@ overlay.show = function(){
 					break;
 			}
 			overlay.container.fadeIn("normal");
-		}, 1500);
+		}, 2000);
 	}
 	// Start underwater animation
 	if (overlay.link.attr("href") == "#underwater" ){

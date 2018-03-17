@@ -364,6 +364,7 @@ a:hover {
 .packet {
 	animation: skew infinite 1000ms;
 	margin: 4% 0%;
+	max-width: 100%;
 }
 
 
