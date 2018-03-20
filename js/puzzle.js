@@ -166,13 +166,10 @@ puzzle.init = function () {
             $(".piece").toggleClass("valid");
         },
         drop: function (event, ui) {
-            ui.draggable.fadeTo("slow", 0.0, remove);
+            ui.draggable.fadeTo("slow", 0.0, remove); // remove droppable from DOM
             $(this).fadeTo("slow", 0.0);
-            puzzle.numOfPieces--;
-            //console.log(puzzle.numOfPieces);
-            if (puzzle.numOfPieces === 0) {
-                puzzle.onComplete();
-            }
+            // Check if puzzle is completed with el.hasChildNodes()
+            puzzle.isComplete();
         }
     });
 }
@@ -216,6 +213,7 @@ puzzle.createPieces = function () {
 
 };
 
+// Offset position of pieces
 puzzle.offsetPieces = function () {
     var maxX = window.innerWidth - puzzle.pieceWidth;
     var maxY = window.innerHeight/3 - puzzle.pieceHeight;
@@ -229,18 +227,23 @@ puzzle.offsetPieces = function () {
 };
 
 // Show overlay on complete
-puzzle.onComplete = function () {
-    // Remove puzzle containers
-    puzzle.slotsContainer.remove()
-    puzzle.piecesContainer.remove()
-    overlay.content.html(overlay.html.puzzleComplete);
-    overlay.show();
+puzzle.isComplete = function () {
+    console.log("is complete?")
+    // Add delay so that the function runs after the piece-el is removed
+    setTimeout(function(){
+        if (!puzzle.piecesContainer.hasChildNodes()) {
+            // Remove puzzle containers
+            puzzle.slotsContainer.remove()
+            puzzle.piecesContainer.remove()
+            overlay.content.html(overlay.html.puzzleComplete);
+            overlay.show();
+        }
+    }, 1000)
 };
 
 // Removes element from DOM
-// There already exists .remove() method, but this is for removing dropped pieces
 function remove() {
-    $(this).remove()
+    $(this).remove();
 };
 
 // Shuffle arrays
