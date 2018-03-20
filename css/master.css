@@ -375,16 +375,19 @@ a:hover {
 #underwater-animation {
 	position: absolute;
   	margin: auto;
- 
+  	left: -100%;
+  	right: -100%;
+  	top: -100%;
+  	bottom: -100%;
 }
 #factory {
-	background: url("/images/factory.png");
+	background: url("../images/factory.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 }
 #underwater {
-	background: url("/images/underwater.png");
+	background: url("../images/underwater.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
