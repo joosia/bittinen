@@ -11,8 +11,8 @@ overlay.link = $("#btn-link");
 overlay.html = {
 	factory: "<p>Internetissä data kulkee lukuisten reitittimien kautta, jotka nimensä mukaisesti ohjaavat liikennettä.</p>",
 	dns:"", // dns screen
-	traffic:"", // traffic control screen
 	underwater: "<p>Liikenne kulkee myös merten pohjassa kestävien kaapeleiden sisällä.</p>",
+	traffic:"<h1>Ruuhkanhallinta</h1><p>Paketit matkustavat pitkin Internetiä - verkkojen verkkoa. Aivan kuten olet oppinut, autolla ei saa ajaa liian kovaa teillä, vaan kaikkien pitää noudattaa nopeusrajoituksia. Säännöt luovat liikenteestä toimivan. Samat säännöt pätevät Internetissäkin. Internetin liikennepoliisina toimii reititin. Jos kaikki paketit siirtyvät liian nopeasti paikasta toiseen, reititin pysäyttää niiden etenemisen. Jos reititin ei olisi liikennepoliisinamme, Internetin valtatatiet tukkeutuisivat. Et silloin pääsisi selaamaan suosikkisivuasi.</p>",
 	server:"<h1>Perillä ollaan!</h1><p>Nettisivut sijaitsevat yhdellä tai useammalle palvelinkoneella.</p>",
 	puzzle: "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p>",
 	puzzleComplete: "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/>",
@@ -36,6 +36,9 @@ overlay.show = function(){
 				case "#underwater":
 					overlay.content.html(overlay.html.underwater);
 					break;
+				case "#traffic-control":
+					console.log("traffic");
+					overlay.content.html(overlay.html.traffic);
 				case "#server":
 					overlay.content.html(overlay.html.server);
 					$("script[src='animations/underwaterAnimation.js']").remove();
@@ -47,7 +50,6 @@ overlay.show = function(){
 				case "#puzzle":
 					overlay.container.css("background", "rgba(0, 0, 0, 0.3)");
 					overlay.content.html(overlay.html.puzzle);
-					root.css("overflow", "hidden"); // disable page scroll
 					break;
 				case "#puzzleComplete":
 					overlay.content.html(overlay.html.puzzleComplete);
@@ -98,6 +100,11 @@ $(document).ready(function () {
 				break;
 			case "#underwater":
 				clearAnimation();
+				overlay.link.attr("href", "#traffic-control");
+				animateScroll();
+				overlay.show();
+				break;
+			case "#traffic-control":
 				overlay.link.attr("href", "#server");
 				animateScroll();
 				overlay.show();
@@ -106,7 +113,13 @@ $(document).ready(function () {
 				overlay.link.attr("href", "#puzzle"); // switch href
 				animateScroll();
 				overlay.show();
-				puzzle.init(); // Start puzzle
+				// disable page scroll after init to prevent scroll on drag
+				setTimeout(function(){
+					root.css("overflow", "hidden"); 
+					puzzle.init // Start puzzle
+				},1000); // Smooth scroll to top last about 1000ms. 
+							//Pieces show up instantly, which is not way intended, 
+							//but no time for fixing this at the moment
 				break;
 			case "#puzzle":
 				overlay.link.attr("href", "#puzzleComplete");
