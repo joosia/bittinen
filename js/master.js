@@ -9,9 +9,9 @@ overlay.content = $("#overlay-text-content");
 overlay.btn = $("#overlay-btn");
 overlay.link = $("#btn-link");
 overlay.html = {
-	factory: "<p>Internetissä data kulkee lukuisten reitittimien kautta, jotka nimensä mukaisesti ohjaavat liikennettä.</p>",
+	factory: "<h1>Reitittimet</h1><p>Internetissä data kulkee lukuisten reitittimien kautta, jotka nimensä mukaisesti ohjaavat liikennettä.</p>",
 	dns:"", // dns screen
-	underwater: "<p>Liikenne kulkee myös merten pohjassa kestävien kaapeleiden sisällä.</p>",
+	underwater: "<h1>Merikaapelit</h1><p>Liikenne kulkee mantereelta toiselle meren pohjassa kestävien kaapeleiden sisällä.</p>",
 	traffic:"<h1>Ruuhkanhallinta</h1><p>Paketit matkustavat pitkin Internetiä - verkkojen verkkoa. Aivan kuten olet oppinut, autolla ei saa ajaa liian kovaa teillä, vaan kaikkien pitää noudattaa nopeusrajoituksia. Säännöt luovat liikenteestä toimivan. Samat säännöt pätevät Internetissäkin. Internetin liikennepoliisina toimii reititin. Jos kaikki paketit siirtyvät liian nopeasti paikasta toiseen, reititin pysäyttää niiden etenemisen. Jos reititin ei olisi liikennepoliisinamme, Internetin valtatatiet tukkeutuisivat. Et silloin pääsisi selaamaan suosikkisivuasi.</p>",
 	server:"<h1>Perillä ollaan!</h1><p>Nettisivut sijaitsevat yhdellä tai useammalle palvelinkoneella.</p>",
 	puzzle: "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p>",
@@ -37,8 +37,8 @@ overlay.show = function(){
 					overlay.content.html(overlay.html.underwater);
 					break;
 				case "#traffic-control":
-					console.log("traffic");
 					overlay.content.html(overlay.html.traffic);
+					break;
 				case "#server":
 					overlay.content.html(overlay.html.server);
 					$("script[src='animations/underwaterAnimation.js']").remove();
@@ -103,6 +103,7 @@ $(document).ready(function () {
 				overlay.link.attr("href", "#traffic-control");
 				animateScroll();
 				overlay.show();
+				ruuhkanhallinta();
 				break;
 			case "#traffic-control":
 				overlay.link.attr("href", "#server");
@@ -171,4 +172,134 @@ $(document).ready(function () {
 		}
 	});
 
+
+	// Eeva, ruuhkanhallinta
+	var startPosX = $(window).width();
+	$("#paketti").css({
+		right: startPosX,
+	});
+	$("#poliisi").css({
+		left: startPosX,
+	});
+	createClouds();
+	window.requestAnimationFrame(move);
+
 }); // $(document).ready(function(){});
+
+
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––*/
+/*––––– ruuhkanhallinta.js, Eevan scriptit  –––––*/
+/*–––––––––––––––––––––––––––––––––––––––––––––––*/
+var clouds = [];
+var cloudsCount = 1;
+
+var pakettiW = document.getElementById("paketti1").clientWidth;
+var poliisiW = document.getElementById("poliisi1").clientWidth;
+var xMin = 0;
+var xMax = window.innerWidth;
+//var yMin = 0;
+//var yMax = window.innerHeigh;
+var xOutStep = 1600;
+
+// cloud class, eli toisin funktio
+function Cloud(img, x, y, dx) {
+	this.img = img;
+	this.x = x;
+	this.y = y;
+	this.dx = dx;
+	this.speed = Math.random() * 10 + 2;
+	this.width = img.width();
+}
+
+//
+function createClouds() {
+	//console.log($("#traffic-control").height());
+	for (var i = 0; i < cloudsCount; i++) {
+		// create a new img
+		var img = $("<img>", {
+			src: "images/bittinen_pilvet.png"
+		}).addClass("cloud");
+		// random movement, dx == 1 or dx == -1
+		var dx = 1;
+		if (Math.random() < 0.5) dx = -1; // right to left
+		// position
+		var x = Math.random() * xMax;
+		var y = Math.random() * $("#traffic-control").height() * 0.1 + $("#traffic-control").offset().top;
+		// set offset
+		img.offset({ left: x, top: y });
+		// append to body
+		$("#cloudcontainer").append(img);
+		// create a cloud
+		clouds[i] = new Cloud(img, x, y, dx);
+
+	}
+}
+
+// move clouds
+function move() {
+	for (var i = 0; i < cloudsCount; i++) {
+		if (clouds[i].x > (xMax + xOutStep) || clouds[i].x < (xMin - clouds[i].width - xOutStep)) {
+			clouds[i].dx *= -1;
+			clouds[i].y = Math.random() * $("#traffic-control").height() * 0.1 + $("#traffic-control").offset().top;
+		}
+		// move
+		clouds[i].x += (clouds[i].dx * clouds[i].speed);
+		var cloudIMG = clouds[i].img;
+		// move it
+		cloudIMG.offset({ left: clouds[i].x, top: clouds[i].y });
+	}
+	window.requestAnimationFrame(move);
+}
+
+// poliisin ja paketin animaatio
+// $(document).ready(function() {
+//     createClouds();
+//     window.requestAnimationFrame(move);
+//     ruuhkanhallinta();
+//     // $("#startAnimation").click(function(){
+//     //     //console.log("paketti");
+//     //     $("#paketti").animate({left: '600px'}, 5000, paketti);
+//     //     $("#poliisi").delay(8000).animate({left: '1200px'}, poliisi);
+//     //     // $("#info").fadeTo("slow", 0.0);
+//     // });
+
+// });
+
+function poliisi() {
+	//console.log("testi")
+	$("#poliisi1").attr("src", "images/stop_poliisi.gif");
+	setTimeout(poliisiStop, 1350);
+}
+
+// kutsutaan kohteessa poliisi
+function poliisiStop() {
+	$("#poliisi1").attr("src", "images/seisova_poliisi.gif");
+}
+
+function paketti() {
+	$("#paketti1").attr("src", "images/seisova_paketti.gif");
+	setTimeout(pakettiTuleepahamieli, 6000)
+}
+
+
+function pakettiTuleepahamieli() {
+	$("#paketti1").attr("src", "images/tuleepahamieli_paketti.gif")
+	setTimeout(pahamieliPaketti, 800);
+}
+
+// vaihda oikea kuva
+function pahamieliPaketti() {
+	$("#paketti1").attr("src", "images/pahamieli_paketti.gif")
+}
+
+// käynnistetään animaatio
+function ruuhkanhallinta() {
+	var windowWidth = $(window).width();
+	var pakettiX = windowWidth / 2;
+	var poliisiX = windowWidth / 1.9;
+	$("#paketti").animate({ right: pakettiX }, 4000, paketti);
+	$("#poliisi").delay(5000).animate({ left: poliisiX }, 1000, poliisi);
+}
+

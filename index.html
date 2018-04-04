@@ -1,100 +1,111 @@
 <!DOCTYPE html>
 <html lang="fi">
 
-	<head>
-		<link rel="shortcut icon" href="images/favicon_1.ico"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta charset="utf-8" />
-		<title>bittinen</title>
-		<!-- Font Awesome CDN -->
-		<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
-		<!--FONTS: Fredoka One % Noto Sans -->
-		<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Noto+Sans" rel="stylesheet">
-		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="css/master.css" />
-		<!-- Animate CC and Create.js scripts-->
-		<script src="js/create.js"></script>
-		<script src="animations/factoryAnimation.js"></script>
-	</head>
+<head>
+	<link rel="shortcut icon" href="images/favicon_1.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="utf-8" />
+	<title>bittinen</title>
+	<!-- Font Awesome CDN -->
+	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+	<!--FONTS: Fredoka One % Noto Sans -->
+	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Noto+Sans" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/master.css" />
+	<!-- Animate CC and Create.js scripts-->
+	<script src="js/create.js"></script>
+	<script src="animations/factoryAnimation.js"></script>
+</head>
 
-	<body>
-		<div id="warning"><h2>Resoluutio liian pieni. Suurenna selainikkunaa tai käännä puhelinta.</h2></div>
-		<div id="overlay-container">
-			<div id="overlay">
-				<div id="overlay-text-content">
-					<h1>Mitä tapahtuu, kun lataat nettisivun?</h1>
-					<p>Kirjoita osoite alla näkyvään selaimeen ja lähde seuraamaan paketin matkaa. Käytä muotoa www.osoite.fi. Kokeile myös,
-						mitä käy, jos kirjoitat osoitteen väärässä muodossa.</p>
-				</div>
-				<div id='overlay-btn'>
-					<a id="btn-link" href="#intro">Aloita</a>
-				</div>
+<body>
+	<div id="warning">
+		<h2>Resoluutio liian pieni. Suurenna selainikkunaa tai käännä puhelinta.</h2>
+	</div>
+	<div id="overlay-container">
+		<div id="overlay">
+			<div id="overlay-text-content">
+				<h1>Mitä tapahtuu, kun lataat nettisivun?</h1>
+				<p>Kirjoita osoite alla näkyvään selaimeen ja lähde seuraamaan paketin matkaa. Käytä muotoa www.osoite.fi. Kokeile myös,
+					mitä käy, jos kirjoitat osoitteen väärässä muodossa.</p>
+			</div>
+			<div id='overlay-btn'>
+				<a id="btn-link" href="#intro">Aloita</a>
 			</div>
 		</div>
-		<!-- Intro -->
-		<div id="intro" class="full-screen">
-			<img id="logo" class="fade-in select-disable" draggable="false" ondragstart="return false;" src="images/logo.svg" alt=""
-				  />
-			<!-- Puzzle -->
-			<div id="no-scroll">
-				<div id="pieces-container" class="select-disable"></div>
-			</div>
-			<div id="browser-container">
-				<div id="scale">
-					<div id="form" autocomplete="url">
-						<input id="url" class="fade-in" type="url" placeholder="https://" value="https://" />
-					</div>
-					<img id="browser" class="select-disable" src="images/browser-bittinen.svg" draggable="false" ondragstart="return false;"
-						  />
+	</div>
+	<!-- Intro -->
+	<div id="intro" class="full-screen">
+		<img id="logo" class="fade-in select-disable" draggable="false" ondragstart="return false;" src="images/logo.svg" alt=""
+		/>
+		<!-- Puzzle -->
+		<div id="no-scroll">
+			<div id="pieces-container" class="select-disable"></div>
+		</div>
+		<div id="browser-container">
+			<div id="scale">
+				<div id="form" autocomplete="url">
+					<input id="url" class="fade-in" type="url" placeholder="https://" value="https://" />
 				</div>
-				<img id="puzzle-img" src="images/puzzle-cat.png" />
-				<div id=slots-container></div>
+				<img id="browser" class="select-disable" src="images/browser-bittinen.svg" draggable="false" ondragstart="return false;"
+				/>
 			</div>
+			<img id="puzzle-img" src="images/puzzle-cat.png" />
+			<div id=slots-container></div>
 		</div>
+	</div>
 
-		<!-- Factory Animation -->
-		<div id="factory" class="full-screen">
-			<div id="factory-animation" style="width:1279px; height:720px">
-				<canvas id="canvas1" width="1279" height="720" style="position: absolute;"></canvas>
+	<!-- Factory Animation -->
+	<div id="factory" class="full-screen">
+		<div id="factory-animation" style="width:1279px; height:720px">
+			<canvas id="canvas1" width="1279" height="720" style="position: absolute;"></canvas>
+		</div>
+	</div>
+
+	<!-- Underwater Animation -->
+	<div id="underwater" class="full-screen">
+		<div id="underwater-animation" style="width:1279px; height:720px">
+			<canvas id="canvas2" width="1279" height="720" style="position: absolute;"></canvas>
+		</div>
+	</div>
+
+	<!-- Traffic Control -->
+	<!-- Ruuhkanhallinta, tästä alkaa Eevan osuus-->
+	<div id="traffic-control" class="full-screen">
+		<!--container pilville, jotta ruutu ei veny niiden liikkuessa-->
+		<div id="cloudcontainer"></div>
+		<!-- <div class="content"> -->
+			<!-- <div id="info">
+				<button id="startAnimation">Start animation</button>
+			</div> -->
+			<!-- paketin ja poliisin animaatiot ovat tässä -->
+			<div id="paketti">
+				<img id="paketti1" src="images/kaveleva_paketti.gif">
 			</div>
-		</div>
-
-		<!-- Underwater Animation -->
-		<div id="underwater" class="full-screen">
-			<div id="underwater-animation" style="width:1279px; height:720px">
-				<canvas id="canvas2" width="1279" height="720" style="position: absolute;"></canvas>
+			<div id="poliisi">
+				<img id="poliisi1" src="images/siirtyma_poliisi.gif">
 			</div>
-		</div>
+		<!-- </div> -->
+	</div>
+	<!-- Tähän loppuu Eevan osuus -->
 
-		<!-- Traffic Control -->
-		<div id="traffic-control" class="full-screen">
-				<div id="info">
-					<button id="startAnimation">Start animation</button>
-				</div>
 
-				<!-- paketin ja poliisin animaatiot ovat tässä -->
-				<div id="paketti">
-					<img id="paketti1" src="images/kaveleva_paketti.gif">
-				</div>
-				<div id="poliisi">
-					<img id="poliisi1" src="images/siirtyma_poliisi.gif">
-				</div>
+	<!-- Screen Template -->
+	<div id="server" class="full-screen">
+		<div class="content">
 		</div>
+	</div>
+	<!-- Howler.js for sounds -->
+	<!-- <script type="text/javascript" src="  https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.9/howler.core.min.js"></script> -->
+	<!-- jQuery, jQuery UI -->
+	<script src="js/jQuery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<!-- Ruuhkanhallinta JS -->
+	<!-- <script src="js/ruuhkanhallinta.js"></script> -->
+	<!-- Master JS -->
+	<script src="js/master.js"></script>
+	<script src="js/puzzle.js"></script>
 
-		<!-- Screen Template -->
-		<div id="server" class="full-screen">
-			<div class="content">
-			</div>
-		</div>
-		<!-- Howler.js for sounds -->
-		<!-- <script type="text/javascript" src="  https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.9/howler.core.min.js"></script> -->
-		<!-- jQuery, jQuery UI -->
-		<script src="js/jQuery.min.js"></script>
-		<script src="js/jquery-ui.min.js"></script>
-		<!-- Master JS -->
-		<script src="js/intro.js"></script>
-		<script src="js/puzzle.js"></script>
-	</body>
+</body>
 
 </html>
