@@ -40,9 +40,9 @@ overlay.show = function(){
 					overlay.content.html(overlay.html.underwater);
 					break;
 				case "#traffic-control":
-					if (window.innerWidth >= 850) {
+					overlay.content.html(overlay.html.traffic);
+					if (window.innerWidth > 850) {
 						overlay.textContainer.css({ top: "2.5%", left: "1.5%" });
-						overlay.content.html(overlay.html.traffic);
 					}
 					break;
 				case "#server":
