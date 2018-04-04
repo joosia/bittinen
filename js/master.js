@@ -7,6 +7,10 @@ var overlay = {}
 overlay.container = $("#overlay-container");
 overlay.textContainer = $("#overlay");
 overlay.content = $("#overlay-text-content");
+overlay.minimize = function () { 
+	overlay.content.children("p").slideToggle("fast");
+	overlay.textContainer.toggleClass("overlay-minimized");
+}
 overlay.btn = $("#overlay-btn");
 overlay.link = $("#btn-link");
 overlay.html = {
@@ -92,10 +96,20 @@ $(document).ready(function () {
 	/*––––– Global Scripts  –––––*/
 	/*–––––––––––––––––––––––––––*/
 	
-	/* Overlay button */
+	// Scroll to top on load and refresh before overflow:hidden. The page may get stuck otherwises in some cases. setTimeout doesn't have callback functionality, so let's use animete()
+	$('html').animate({
+		scrollTop: 0
+	}, function () {
+		$("body").css("overflow", "hidden");
+	});
+
+	/* Overlay buttons */
+	overlay.textContainer.on("click", overlay.minimize);
 	overlay.btn.on("click", function (e) {
 		e.preventDefault();
 		e.stopPropagation();
+		overlay.content.children("p:hidden").slideDown("fast");
+		overlay.textContainer.removeClass("overlay-minimized");
 		overlay.container.fadeOut("fast");
 		switch (overlay.link.attr("href")) {
 			case "#factory":
@@ -123,13 +137,11 @@ $(document).ready(function () {
 				overlay.link.attr("href", "#puzzle"); // switch href
 				animateScroll();
 				overlay.show();
-				// disable page scroll after init to prevent scroll on drag
+				puzzle.init()
 				setTimeout(function(){
-					root.css("overflow", "hidden"); 
-					puzzle.init() // Start puzzle
+					$("html").css("overflow", "hidden"); 
+					 // html overflow hidden to prevent scroll to on drag
 				},1000); // Smooth scroll to top last about 1000ms. 
-							//Pieces show up instantly, which is not way intended, 
-							//but no time for fixing this at the moment
 				break;
 			case "#puzzle":
 				overlay.link.attr("href", "#puzzleComplete");
@@ -337,6 +349,6 @@ function ruuhkanhallinta() {
 	var pakettiX = windowWidth / 2;
 	var poliisiX = windowWidth / 1.9;
 	$("#paketti").animate({ right: pakettiX }, 4000, paketti);
-	$("#poliisi").delay(5000).animate({ left: poliisiX }, 1000, poliisi);
+	$("#poliisi").delay(3000).animate({ left: poliisiX }, 1000, poliisi);
 }
 

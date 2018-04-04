@@ -146,7 +146,7 @@ a:hover {
 	position: fixed;
 	display: none;
 	z-index: 99;
-	height: 100%;
+	height: 100vh;
 	width: 100%;
 	background: rgba(0, 0, 0, 0.3);
 }
@@ -164,11 +164,14 @@ a:hover {
 	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
 	background-color: #fff;
 	z-index: 99;
+	cursor: pointer;
+	transition: 300ms;
 }
 
-/* #overlay-text-content>p {
-
-} */
+#overlay.overlay-minimized {
+	transform-origin: top center;
+	transform: scale(0.5);
+}
 
 #overlay-text-content>h1 {
 	margin-top: 5px;
@@ -186,6 +189,10 @@ a:hover {
 	border-radius: 25px;
 	background: rgb(150, 206, 180);
 	transition: 200ms;
+}
+
+.btn-mimized {
+
 }
 
 #overlay-btn a {
@@ -362,6 +369,8 @@ a:hover {
 	float: left;
 	background: #fff;
 	opacity: .75;
+	/* Makes the puzzle slot whitespace bug on chrome a little less noticable
+	outline: 1px solid rgba(255,255,255,0.20);*/
 }
 
 .slot-hover {
@@ -490,12 +499,15 @@ a:hover {
 		font-size: 10px;
 	}
 	#overlay {
-		top: -1%;
-		left: 5%;
-		width: 90%;
+		top: 1vh;
+		left: 1%;
+		width: 98%;
 		max-height: 85vh;
 		padding: 3%;
-		font-size: 12px;
+		font-size: 10px;
+	}
+	#overlay-text-content>h1{
+		font-size: 16px;
 	}
 }
 @media only screen and (max-width: 500px) {
