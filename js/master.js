@@ -5,16 +5,17 @@ var root = $('html, body');
 /*–––––––––––––––––––––––––––––*/
 var overlay = {}
 overlay.container = $("#overlay-container");
+overlay.textContainer = $("#overlay");
 overlay.content = $("#overlay-text-content");
 overlay.btn = $("#overlay-btn");
 overlay.link = $("#btn-link");
 overlay.html = {
-	factory: "<h1>Reitittimet</h1><p>Internetissä data kulkee lukuisten reitittimien kautta, jotka nimensä mukaisesti ohjaavat liikennettä.</p>",
+	factory: "<h1>Reitittimet</h1><p>Matkallaan paketit kulkevat useiden reitittimien kautta, jotka nimensä mukaisesti ohjaavat liikennettä. Todennäköisesti myös sinun kotona on ainakin yksi reititin.</p>",
 	dns:"", // dns screen
-	underwater: "<h1>Merikaapelit</h1><p>Liikenne kulkee mantereelta toiselle meren pohjassa kestävien kaapeleiden sisällä.</p>",
-	traffic:"<h1>Ruuhkanhallinta</h1><p>Paketit matkustavat pitkin Internetiä - verkkojen verkkoa. Aivan kuten olet oppinut, autolla ei saa ajaa liian kovaa teillä, vaan kaikkien pitää noudattaa nopeusrajoituksia. Säännöt luovat liikenteestä toimivan. Samat säännöt pätevät Internetissäkin. Internetin liikennepoliisina toimii reititin. Jos kaikki paketit siirtyvät liian nopeasti paikasta toiseen, reititin pysäyttää niiden etenemisen. Jos reititin ei olisi liikennepoliisinamme, Internetin valtatatiet tukkeutuisivat. Et silloin pääsisi selaamaan suosikkisivuasi.</p>",
-	server:"<h1>Perillä ollaan!</h1><p>Nettisivut sijaitsevat yhdellä tai useammalle palvelinkoneella.</p>",
-	puzzle: "<h1>Melkein valmista...</h1><p>Koska nettisivut sisältävät paljon dataa, ne koostuvat useista paketeista yhden sijaan. Kokeile saatko palat paikoilleen ja sivun näkymään oikein!</p>",
+	underwater: "<h1>Merikaapelit</h1><p>Liikenne kulkee mantereelta toiselle merten pohjissa. Näiden kestävien kaapeleiden huoltoon ja asennukseen on myös omat erikoisaluksensa eli kaapelilaivat.</p>",
+	traffic:"<h1>Ruuhkanhallinta</h1><p>Aivan kuten olet oppinut, autolla ei saa ajaa liian kovaa teillä, vaan kaikkien pitää noudattaa nopeusrajoituksia. Säännöt luovat liikenteestä toimivan. Samat säännöt pätevät Internetissäkin. Internetin liikennepoliisina toimii reititin. Jos kaikki paketit siirtyvät liian nopeasti paikasta toiseen, reititin pysäyttää niiden etenemisen. Jos reititin ei olisi liikennepoliisinamme, Internetin valtatatiet tukkeutuisivat. Et silloin pääsisi selaamaan suosikkisivuasi.</p>",
+	server:"<h1>Palvelimet</h1><p>Perillä ollaan! Nettisivut sijaitsevat yhdellä tai usealla eri palvelintietokoneella. Koska nettisivut sisältävät paljon dataa, niiden kuljettamiseen tarvitaan monta pakettia. Netin liikenteestä, osa kulkee myös avaruudessa satelliittien välityksellä, joten oikaistaanpa hieman ja lähdetään raketilla takaisin.</p>",
+	puzzle: "<h1>Melkein valmista...</h1><p>Kaikki tarvittavat palaset ovat nyt koossa! Nettisivu ei kuitenkaan näy vielä oikein, sillä paloja ei ole kasattu takaisin oikeaan muotoon. Tämä tehtävä kuuluu normaalisti internet-selaimelle, mutta kokeile saisitko sinä näkymään sivun oikein.</p>",
 	puzzleComplete: "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/>",
 }
 overlay.show = function(){
@@ -22,32 +23,38 @@ overlay.show = function(){
 	if (overlay.link.attr("href") == "#intro" || overlay.link.attr("href") == "#puzzleComplete") {
 		overlay.container.fadeIn("normal");
 	} else {
-		setTimeout(function(){
+		setTimeout(function () {
 			switch (overlay.link.attr("href")) {
 				case "#factory":
 					$("#intro").attr("id", "puzzle"); // Change the id for later use
 					overlay.container.css("background", "none"); // remove overlay shadow
+					overlay.textContainer.css("top","2.5%");
 					overlay.content.html(overlay.html.factory);
 					overlay.link.text("Jatka");
 					break;
-				case "#second":
-					overlay.content.html(overlay.html.second);
+				case "#dns":
+					//overlay.textContainer.css({ top: "2.5%", left: "5%" });	
+					//overlay.content.html(overlay.html.dns);
 					break;
 				case "#underwater":
 					overlay.content.html(overlay.html.underwater);
 					break;
 				case "#traffic-control":
-					overlay.content.html(overlay.html.traffic);
+					if (window.innerWidth >= 850) {
+						overlay.textContainer.css({ top: "2.5%", left: "1.5%" });
+						overlay.content.html(overlay.html.traffic);
+					}
 					break;
 				case "#server":
 					overlay.content.html(overlay.html.server);
+					overlay.textContainer.css("left", "25%");	
 					$("script[src='animations/underwaterAnimation.js']").remove();
 					$("#underwater-animation").remove();
 					$("script[src='js/create.js']").remove();
 					$("#factory-animation").remove();
 					$("script[src='animations/factoryAnimation.js']").remove();
 					break;
-				case "#puzzle":
+				case "#puzzle":	
 					overlay.container.css("background", "rgba(0, 0, 0, 0.3)");
 					overlay.content.html(overlay.html.puzzle);
 					break;
@@ -84,10 +91,11 @@ $(document).ready(function () {
 	/*–––––––––––––––––––––––––––*/
 	/*––––– Global Scripts  –––––*/
 	/*–––––––––––––––––––––––––––*/
-
+	
 	/* Overlay button */
 	overlay.btn.on("click", function (e) {
 		e.preventDefault();
+		e.stopPropagation();
 		overlay.container.fadeOut("fast");
 		switch (overlay.link.attr("href")) {
 			case "#factory":
@@ -108,6 +116,7 @@ $(document).ready(function () {
 			case "#traffic-control":
 				overlay.link.attr("href", "#server");
 				animateScroll();
+				$("#server-animation").get(0).play();
 				overlay.show();
 				break;
 			case "#server":
@@ -117,7 +126,7 @@ $(document).ready(function () {
 				// disable page scroll after init to prevent scroll on drag
 				setTimeout(function(){
 					root.css("overflow", "hidden"); 
-					puzzle.init // Start puzzle
+					puzzle.init() // Start puzzle
 				},1000); // Smooth scroll to top last about 1000ms. 
 							//Pieces show up instantly, which is not way intended, 
 							//but no time for fixing this at the moment
@@ -159,9 +168,22 @@ $(document).ready(function () {
 			scale.removeClass("scale-up");
 		}
 	});
+
+	// url validation with regex
+	var pattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www\.)+([{1}[a-z0-9]+)*\.[a-z]{2,5}?$/; 
+	url.on("input", function () {
+		if ( pattern.test( $(this).val() ) ) {
+			$(this).css("box-shadow", "0 0 8px rgb(150, 206, 180)");
+		}
+		else {
+			$(this).css("box-shadow", "0 0 8px rgb(255, 111, 105)");
+		}
+	});
+
 	// Function on url-submit
-	$("input").on("keypress", function (e) {
-		if (e.which === 13) {
+	var errors = 0;
+	url.on("keypress", function (e) {
+		if (pattern.test($(this).val()) && e.which === 13) {
 			url.blur();
 			overlay.link.attr("href", "#factory"); // switch href
 			factoryAnimation() // Run factory animation
@@ -169,6 +191,21 @@ $(document).ready(function () {
 			animateScroll();
 			overlay.show();
 			form.remove();
+		}
+		if (!pattern.test($(this).val()) && e.which === 13) {
+			if (errors === 0) {
+				url.blur()
+				overlay.content.html("<h1>Voi pahus!</h1>Jokin meni nyt pieleen. Muistithan kirjoittaa osoitteen alkuun https:// tai www ?");
+			} else {
+				url.blur()
+				overlay.content.html("<h1>Voi pahus!</h1>Jossain on vielä virhe. Kokeile käyttää muotoa: https://www.osoite.fi ");
+			}
+			errors++;
+			overlay.link.text("Sulje");
+			overlay.show();
+			overlay.btn.one("click", function () {
+				url.focus();
+			});
 		}
 	});
 

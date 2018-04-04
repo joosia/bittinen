@@ -26,8 +26,8 @@
 		<div id="overlay">
 			<div id="overlay-text-content">
 				<h1>Mitä tapahtuu, kun lataat nettisivun?</h1>
-				<p>Kirjoita osoite alla näkyvään selaimeen ja lähde seuraamaan paketin matkaa. Käytä muotoa www.osoite.fi. Kokeile myös,
-					mitä käy, jos kirjoitat osoitteen väärässä muodossa.</p>
+				<p>Internetissä tieto liikkuu pakettien mukana paikasta toiseen. Kirjoita jokin verkko-osoite alla näkyvään selaimeen ja lähde seuraamaan paketin
+					matkaa. Ai niin, mutta missäs muodossa ne verkko-osoitteet muuten kirjoitetaan?</p>
 			</div>
 			<div id='overlay-btn'>
 				<a id="btn-link" href="#intro">Aloita</a>
@@ -44,8 +44,8 @@
 		</div>
 		<div id="browser-container">
 			<div id="scale">
-				<div id="form" autocomplete="url">
-					<input id="url" class="fade-in" type="url" placeholder="https://" value="https://" />
+				<div id="form" autocomplete='off'>
+					<input id="url" class="fade-in" placeholder="Kirjoita osoite tähän"/>
 				</div>
 				<img id="browser" class="select-disable" src="images/browser-bittinen.svg" draggable="false" ondragstart="return false;"
 				/>
@@ -92,8 +92,9 @@
 
 	<!-- Screen Template -->
 	<div id="server" class="full-screen">
-		<div class="content">
-		</div>
+		<video id="server-animation">
+			<source src="animations/arrival-animation.mp4" type="video/mp4">
+		</video>
 	</div>
 	<!-- Howler.js for sounds -->
 	<!-- <script type="text/javascript" src="  https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.9/howler.core.min.js"></script> -->
