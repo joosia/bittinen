@@ -404,13 +404,14 @@ a:hover {
 /*––––– Factory, Underwater and Server Animations –––––*/
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 #factory-animation,
-#underwater-animation {
+#underwater-animation,
+#server-animation {
 	position: absolute;
   	margin: auto;
   	left: -100%;
   	right: -100%;
   	top: -100%;
-  	bottom: -100%;
+  	bottom: -90%;
 }
 #factory {
 	background: url("../images/factory.png");

@@ -19790,7 +19790,7 @@
                      lastS = sRatio;
                   }
                }
-               makeResponsive(true, 'both', true, 2);
+               makeResponsive(true, 'width', true, 2);
                AdobeAn.compositionLoaded(lib.properties.id);
                fnStartAnimation();
             }

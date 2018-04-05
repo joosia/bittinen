@@ -76,6 +76,10 @@ overlay.show = function(){
 	if (overlay.link.attr("href") == "#underwater" ){
 		underwaterAnimation();
 	}
+	// Start server animation
+	if (overlay.link.attr("href") == "#server") {
+			serverAnimation();
+	} 
 }
 
 function animateScroll() {
@@ -122,6 +126,7 @@ $(document).ready(function () {
 				break;
 			case "#underwater":
 				clearAnimation();
+				$("body").append('<script src="animations/serverAnimation.js"></script>');
 				overlay.link.attr("href", "#traffic-control");
 				animateScroll();
 				overlay.show();
@@ -130,7 +135,6 @@ $(document).ready(function () {
 			case "#traffic-control":
 				overlay.link.attr("href", "#server");
 				animateScroll();
-				$("#server-animation").get(0).play();
 				overlay.show();
 				break;
 			case "#server":
@@ -139,6 +143,7 @@ $(document).ready(function () {
 				overlay.show();
 				puzzle.init()
 				setTimeout(function(){
+					clearAnimation();
 					$("html").css("overflow", "hidden"); 
 					 // html overflow hidden to prevent scroll to on drag
 				},1000); // Smooth scroll to top last about 1000ms. 
