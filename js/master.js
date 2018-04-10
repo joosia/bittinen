@@ -74,9 +74,9 @@ overlay.show = function(){
 					overlay.content.html(overlay.html.puzzleComplete);
 					root.css("overflow", "auto"); // enable scroll
 					break;
-				case "#video":
-					overlay.content.html(overlay.html.video);
-					break;
+				// case "#video":
+				// 	overlay.content.html(overlay.html.video);
+				// 	break;
 				default:
 					break;
 			}
@@ -165,6 +165,9 @@ $(document).ready(function () {
 			case "#puzzleComplete":
 				overlay.link.attr("href", "#video");
 				break;
+			case "#video":
+				overlay.html(overlay.html.video);
+				break;	
 			default:
 				break;
 		}
