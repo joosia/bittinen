@@ -3,14 +3,14 @@ var root = $('html, body');
 /*–––––––––––––––––––––––––––––*/
 /*––––– Overlay Settings  –––––*/
 /*–––––––––––––––––––––––––––––*/
-var overlay = {}
+var overlay = {};
 overlay.container = $("#overlay-container");
 overlay.textContainer = $("#overlay");
 overlay.content = $("#overlay-text-content");
 overlay.minimize = function () { 
 	overlay.content.children("p").slideToggle("fast");
 	overlay.textContainer.toggleClass("overlay-minimized");
-}
+};
 overlay.btn = $("#overlay-btn");
 overlay.link = $("#btn-link");
 overlay.html = {
@@ -18,13 +18,15 @@ overlay.html = {
 	dns:"", // dns screen
 	underwater: "<h1>Merikaapelit</h1><p>Liikenne kulkee mantereelta toiselle merten pohjissa. Näiden kestävien kaapeleiden huoltoon ja asennukseen on myös omat erikoisaluksensa eli kaapelilaivat.</p>",
 	traffic: "<h1>Ruuhkanhallinta</h1><p>Aivan kuten olet oppinut, autolla ei saa ajaa liian kovaa teillä, vaan kaikkien pitää noudattaa nopeusrajoituksia. Säännöt luovat liikenteestä toimivan. Samat säännöt pätevät Internetissäkin, mutta bittien maailmassa liikennepoliisina toimii reititin.",
-	server:"<h1>Palvelimet</h1><p>Perillä ollaan! Nettisivut sijaitsevat yhdellä tai usealla eri palvelintietokoneella. Koska nettisivut sisältävät paljon dataa, niiden kuljettamiseen tarvitaan monta pakettia. Netin liikenteestä, osa kulkee myös avaruudessa satelliittien välityksellä, joten oikaistaanpa hieman ja lähdetään raketilla takaisin.</p>",
+	server: "<h1>Palvelimet</h1><p>Perillä ollaan! Nettisivut sijaitsevat yhdellä tai usealla eri palvelintietokoneella. Koska nettisivut sisältävät paljon dataa, niiden kuljettamiseen tarvitaan monta pakettia. Netin liikenteestä, osa kulkee myös avaruudessa satelliittien välityksellä, joten oikaistaanpa hieman ja lähdetään raketilla takaisin.</p>",
 	puzzle: "<h1>Melkein valmista...</h1><p>Kaikki tarvittavat palaset ovat nyt koossa! Nettisivu ei kuitenkaan näy vielä oikein, sillä paloja ei ole kasattu takaisin oikeaan muotoon. Tämä tehtävä kuuluu normaalisti internet-selaimelle, mutta kokeile saisitko sinä näkymään sivun oikein.</p>",
 	puzzleComplete: "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/>",
+	video: "<video muted loop paused playsinline controls id='video' style='width: 100%; height=100%;' preload='auto'><source src='video/bittinen.mp4'></video>",
 }
+
 overlay.show = function(){
 	// Add delay if not on intro or puzzle screen
-	if (overlay.link.attr("href") == "#intro" || overlay.link.attr("href") == "#puzzleComplete") {
+	if (overlay.link.attr("href") == "#intro" || overlay.link.attr("href") == "#puzzleComplete" || overlay.link.attr("href") == "#video") {
 		overlay.container.fadeIn("normal");
 	} else {
 		setTimeout(function () {
@@ -32,7 +34,7 @@ overlay.show = function(){
 				case "#factory":
 					$("#intro").attr("id", "puzzle"); // Change the id for later use
 					overlay.container.css("background", "none"); // remove overlay shadow
-					overlay.textContainer.css("top","2.5%");
+					overlay.textContainer.css("top", "2.5%");
 					overlay.content.html(overlay.html.factory);
 					overlay.link.text("Jatka");
 					break;
@@ -47,11 +49,17 @@ overlay.show = function(){
 					overlay.content.html(overlay.html.traffic);
 					if (window.innerWidth > 850) {
 						overlay.textContainer.css({ top: "2.5%", left: "1.5%" });
+					} else {
+						overlay.textContainer.css({ top: "1vh", left: "1%" });
 					}
 					break;
 				case "#server":
 					overlay.content.html(overlay.html.server);
-					overlay.textContainer.css("left", "25%");	
+					if (window.innerWidth > 850) {
+						overlay.textContainer.css({ top: "2.5%", left: "25%"});
+					} else {
+						overlay.textContainer.css({ top: "1vh", left: "1%" });
+					}
 					$("script[src='animations/underwaterAnimation.js']").remove();
 					$("#underwater-animation").remove();
 					$("script[src='js/create.js']").remove();
@@ -65,6 +73,9 @@ overlay.show = function(){
 				case "#puzzleComplete":
 					overlay.content.html(overlay.html.puzzleComplete);
 					root.css("overflow", "auto"); // enable scroll
+					break;
+				case "#video":
+					overlay.content.html(overlay.html.video);
 					break;
 				default:
 					break;
@@ -152,6 +163,7 @@ $(document).ready(function () {
 				overlay.link.attr("href", "#puzzleComplete");
 				break;
 			case "#puzzleComplete":
+				overlay.link.attr("href", "#video");
 				break;
 			default:
 				break;

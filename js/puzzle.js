@@ -243,7 +243,7 @@ puzzle.offsetPieces = function () {
 
 // Show overlay on complete
 puzzle.isComplete = function () {
-	console.log("is complete?")
+	// console.log("is complete?")
 	// Add delay so that the function runs after the piece-el is removed
 	setTimeout(function(){
 		if (!puzzle.piecesContainer.hasChildNodes()) {
