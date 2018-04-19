@@ -1,5 +1,4 @@
 var root = $('html, body'); 
-
 /*–––––––––––––––––––––––––––––*/
 /*––––– Overlay Settings  –––––*/
 /*–––––––––––––––––––––––––––––*/
@@ -7,8 +6,9 @@ var overlay = {};
 overlay.container = $("#overlay-container");
 overlay.textContainer = $("#overlay");
 overlay.content = $("#overlay-text-content");
-overlay.minimize = function () { 
-	overlay.content.children("p").slideToggle("fast");
+overlay.minimize = function (e) { 
+	e.stopPropagation();
+	//overlay.content.children("p").slideToggle("fast");
 	overlay.textContainer.toggleClass("overlay-minimized");
 };
 overlay.btn = $("#overlay-btn");
@@ -39,13 +39,16 @@ overlay.show = function(){
 					overlay.link.text("Jatka");
 					break;
 				case "#dns":
+					$(overlay.btn).one("click", btnClick);
 					//overlay.textContainer.css({ top: "2.5%", left: "5%" });	
 					//overlay.content.html(overlay.html.dns);
 					break;
 				case "#underwater":
+					$(overlay.btn).one("click", btnClick);
 					overlay.content.html(overlay.html.underwater);
 					break;
 				case "#traffic-control":
+					$(overlay.btn).one("click", btnClick);
 					overlay.content.html(overlay.html.traffic);
 					if (window.innerWidth > 850) {
 						overlay.textContainer.css({ top: "2.5%", left: "1.5%" });
@@ -54,9 +57,10 @@ overlay.show = function(){
 					}
 					break;
 				case "#server":
+					$(overlay.btn).one("click", btnClick);
 					overlay.content.html(overlay.html.server);
 					if (window.innerWidth > 850) {
-						overlay.textContainer.css({ top: "2.5%", left: "25%"});
+						overlay.textContainer.css({ top: "2.5%", left: "25%" });
 					} else {
 						overlay.textContainer.css({ top: "1vh", left: "1%" });
 					}
@@ -66,22 +70,31 @@ overlay.show = function(){
 					$("#factory-animation").remove();
 					$("script[src='animations/factoryAnimation.js']").remove();
 					break;
-				case "#puzzle":	
+				case "#puzzle":
+					$(overlay.btn).one("click", btnClick);
 					overlay.container.css("background", "rgba(0, 0, 0, 0.3)");
 					overlay.content.html(overlay.html.puzzle);
 					break;
-				case "#puzzleComplete":
-					overlay.content.html(overlay.html.puzzleComplete);
-					root.css("overflow", "auto"); // enable scroll
-					break;
-				// case "#video":
-				// 	overlay.content.html(overlay.html.video);
-				// 	break;
 				default:
 					break;
 			}
 			overlay.container.fadeIn("normal");
 		}, 2000);
+	}
+	if (overlay.link.attr("href") == "#puzzleComplete" || overlay.link.attr("href") == "#video") {
+		switch (overlay.link.attr("href")) {
+			case "#puzzleComplete":
+				$(overlay.btn).one("click", btnClick);	
+				overlay.content.html(overlay.html.puzzleComplete);
+				root.css("overflow", "auto"); // enable scroll
+				break;
+			case "#video":
+				$(overlay.btn).one("click", btnClick);
+				overlay.content.html(overlay.html.video);
+				break;
+			default:
+				break;
+		}
 	}
 	// Start underwater animation
 	if (overlay.link.attr("href") == "#underwater" ){
@@ -120,64 +133,18 @@ $(document).ready(function () {
 
 	/* Overlay buttons */
 	overlay.textContainer.on("click", overlay.minimize);
-	overlay.btn.on("click", function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-		overlay.content.children("p:hidden").slideDown("fast");
-		overlay.textContainer.removeClass("overlay-minimized");
-		overlay.container.fadeOut("fast");
-		switch (overlay.link.attr("href")) {
-			case "#factory":
-				clearAnimation(); // Clear animation for better performance
-				// Add underwater animation script
-				$("body").append('<script src="animations/underwaterAnimation.js"></script>');
-				overlay.link.attr("href", "#underwater");
-				animateScroll();
-				overlay.show();
-				break;
-			case "#underwater":
-				clearAnimation();
-				$("body").append('<script src="animations/serverAnimation.js"></script>');
-				overlay.link.attr("href", "#traffic-control");
-				animateScroll();
-				overlay.show();
-				ruuhkanhallinta();
-				break;
-			case "#traffic-control":
-				overlay.link.attr("href", "#server");
-				animateScroll();
-				overlay.show();
-				break;
-			case "#server":
-				overlay.link.attr("href", "#puzzle"); // switch href
-				animateScroll();
-				overlay.show();
-				puzzle.init()
-				setTimeout(function(){
-					clearAnimation();
-					$("html").css("overflow", "hidden"); 
-					 // html overflow hidden to prevent scroll to on drag
-				},1000); // Smooth scroll to top last about 1000ms. 
-				break;
-			case "#puzzle":
-				overlay.link.attr("href", "#puzzleComplete");
-				break;
-			case "#puzzleComplete":
-				overlay.link.attr("href", "#video");
-				break;
-			case "#video":
-				overlay.html(overlay.html.video);
-				break;	
-			default:
-				break;
-		}
+	overlay.btn.on({
+		click: btnClick,
+		dblclick: function (e) { 
+			e.preventDefault();
+			e.stopPropagation();
+		},
 	});
 
 
 	/*–––––––––––––––––––*/
 	/*––––– Intro   –––––*/
 	/*–––––––––––––––––––*/
-
 	var form = $("#form");
 	var url = $("#url");
 	var scale = $("#scale");
@@ -372,3 +339,75 @@ function ruuhkanhallinta() {
 	$("#poliisi").delay(3000).animate({ left: poliisiX }, 1000, poliisi);
 }
 
+
+function showVideo() {
+	overlay.content.html(
+	"<video muted autoplay playsinline controls id='video' style='width: 100%; height=100%; border-radius: 8px;' preload='auto'><source src='video/bittinen.mp4'></video>")
+	$("#video").on("ended", function () {
+		$("#video").fadeOut();
+		overlay.content.html("<img src='images/paketti.png' class='packet'/>");
+		overlay.btn.text("Pelaa uudelleen").css("color","white");
+	});
+}
+
+function btnClick (e) {
+		e.preventDefault();
+		e.stopPropagation();
+	//overlay.content.children("p:hidden").slideDown("fast");
+	overlay.content.children("p").slideToggle("fast");
+		overlay.textContainer.removeClass("overlay-minimized");
+		overlay.container.fadeOut("fast");
+		switch (overlay.link.attr("href")) {
+			case "#factory":
+				$(this).off("click", btnClick);
+				clearAnimation(); // Clear animation for better performance
+				// Add underwater animation script
+				$("body").append('<script src="animations/underwaterAnimation.js"></script>');
+				overlay.link.attr("href", "#underwater");
+				animateScroll();
+				overlay.show();
+				break;
+			case "#underwater":
+				$(this).off("click", btnClick);
+				clearAnimation();
+				$("body").append('<script src="animations/serverAnimation.js"></script>');
+				overlay.link.attr("href", "#traffic-control");
+				animateScroll();
+				overlay.show();
+				ruuhkanhallinta();
+				break;
+			case "#traffic-control":
+				$(this).off("click", btnClick);
+				overlay.link.attr("href", "#server");
+				animateScroll();
+				overlay.show();
+				break;
+			case "#server":
+				$(this).off("click", btnClick);
+				overlay.link.attr("href", "#puzzle"); // switch href
+				animateScroll();
+				overlay.show();
+				puzzle.init()
+				setTimeout(function () {
+					clearAnimation();
+					$("html").css("overflow", "hidden");
+					// html overflow hidden to prevent scroll to on drag
+				}, 1000); // Smooth scroll to top last about 1000ms. 
+				break;
+			case "#puzzle":
+				$(this).off("click", btnClick);
+				overlay.link.attr("href", "#puzzleComplete");
+				break;
+			case "#puzzleComplete":
+				$(this).off("click", btnClick);	
+				overlay.show();
+				showVideo();
+				overlay.link.attr("href", "#video");
+				break;
+			case "#video":
+				location.reload(); // Reload page
+				break;
+			default:
+				break;
+		}
+	}
