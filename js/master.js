@@ -21,7 +21,7 @@ overlay.html = {
 	server: "<h1>Palvelimet</h1><p>Perillä ollaan! Nettisivut sijaitsevat yhdellä tai usealla eri palvelintietokoneella. Koska nettisivut sisältävät paljon dataa, niiden kuljettamiseen tarvitaan monta pakettia. Netin liikenteestä, osa kulkee myös avaruudessa satelliittien välityksellä, joten oikaistaanpa hieman ja lähdetään raketilla takaisin.</p>",
 	puzzle: "<h1>Melkein valmista...</h1><p>Kaikki tarvittavat palaset ovat nyt koossa! Nettisivu ei kuitenkaan näy vielä oikein, sillä paloja ei ole kasattu takaisin oikeaan muotoon. Tämä tehtävä kuuluu normaalisti internet-selaimelle, mutta kokeile saisitko sinä näkymään sivun oikein.</p>",
 	puzzleComplete: "<h1>Mahtavaa! Sait palat paikoilleen.</h1><p>Nyt pakettimme on suorittanut tehtävänsä ja sivu on latautunut. Todellisuudessa kaikki tämä tapahtuu lähes silmänräpäyksessä. Ihmeellistä, eikö vain?</p><img src='images/paketti.png' class='packet'/>",
-	video: "<video muted loop paused playsinline controls id='video' style='width: 100%; height=100%;' preload='auto'><source src='video/bittinen.mp4'></video>",
+	video: "<video autoplay playsinline controls id='video' style='width: 100%; height=100%;' preload='auto'><source src='video/bittinen.mp4'></video>",
 }
 
 overlay.show = function(){
